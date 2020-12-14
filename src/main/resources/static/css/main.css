@@ -1,127 +1,278 @@
-*, *::after, *::before {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
-  position: relative;
-   font-family: 'Montserrat', sans-serif;
-  background-color: #333333;
-  
+    margin: 0;
 }
 
-.lime-color {
-  color: lime;
+/*Login elo*/
+.container {
+    min-height: 100vh;
+    background-size: cover;
+    background-image: url("./images/poleL.jpg");
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
 }
 
-nav {
-  text-transform: uppercase;
+.container2 {
+    position: absolute;
+    min-height: 100vh;
+    background-size: cover;
+    background: url("./images/poleL.jpg");
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
 }
 
-nav a, nav i {
-  color: #ffffff;
-  -webkit-transition: color .3s;
-  transition: color .3s;
+.shadow {
+    position: relative;
+    top: 0;
+    right: 0;
+
+    backdrop-filter: opacity(0.8);
 }
 
-nav a:hover {
-  color: lime;
+.login-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 800px;
+    height: 600px;
 }
 
-nav i {
-  padding: 10px;
+.login-text {
+    font-size: 50px;
+    background: -webkit-linear-gradient(lime, whitesmoke);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 20px;
 }
 
-nav .navbar-brand {
-  font-weight: bold;
+.input {
+    margin: 5px;
+    padding: 10px;
+    font-size: 25px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid lime;
+    outline: none;
+    border-radius: 10px;
+    color: whitesmoke;
 }
 
-nav .active {
-  color: lime;
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
 }
 
-nav .btn-outline-success {
-  color: lime;
-  border: 1px solid lime;
+.input::placeholder, .input:focus {
+    color: whitesmoke;
 }
 
-nav .login-btn {
-  color: lime;
-  -webkit-transition: color .3s;
-  transition: color .3s;
+.input::placeholder {
+    opacity: 0.3;
 }
 
-nav .login-btn:hover {
-  color: white;
+.login-button {
+    background: -webkit-linear-gradient(lime, whitesmoke);
+    font-size: 20px;
+    color: whitesmoke;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    width: 300px;
+    transition: all 0.2s;
 }
 
-header {
-  color: white;
+.login-button:hover, .sub-buttons:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
-header .hero-img {
-  position: relative;
-  height: 100vh;
-  background-image: url("../images/poleL.jpg");
-  background-position: center;
-  background-size: cover;
-  background-attachment: fixed;
-  z-index: 0;
+.sub-buttons {
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    background: #333;
+    color: whitesmoke;
+    transition: all 0.2s;
+    margin: 10px;
 }
 
-header .hero-shadow {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 0;
+.row {
+    display: flex;
+    flex-direction: row;
 }
 
-header .hero-text {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  height: 100%;
-  text-align: center;
+.link-text {
+    text-decoration: none;
+    color: whitesmoke;
 }
 
-header .hero-text h1 {
-  font-size: 30px;
-  letter-spacing: 3px;
-  padding: 5px;
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 1;
+    width: 100%;
 }
 
-header .hero-text p {
-  padding: 10px;
-  font-size: 14px;
+.header-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 50vw;
+    z-index: 1;
 }
 
-header a {
-  text-transform: capitalize;
+.btn {
+    margin: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    color: whitesmoke;
+    text-align: center;
+    align-self: center;
 }
 
-@media (min-width: 414px) {
-  header .hero-text p {
-    font-size: 19px;
-  }
-  header .hero-text h1 {
-    font-size: 35px;
-  }
+.btn:hover {
+    color: lime;
+    cursor: pointer;
 }
-/*# sourceMappingURL=main.css.map */
+
+/*Main elo*/
+.text {
+    color: whitesmoke;
+    transition: all 0.2s;
+    font-size: 20px;
+}
+
+.text:hover {
+    color: lime;
+}
+
+.lisc {
+    color: lime;
+    font-size: 20px;
+}
+
+.content {
+    z-index: 1;
+    margin: auto;
+}
+
+.hero-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.hero-shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 0;
+}
+
+.join-us {
+    text-decoration: none;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    background: transparent;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+    padding: 6px 12px;
+}
+
+.join-us:hover {
+    background: whitesmoke;
+    color: black;
+}
+
+.welcome {
+    font-size: 69px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.subwelcome {
+    font-size: 25px;
+    margin-bottom: 16px;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.log-out {
+    color: lime;
+}
+
+.log-out:active {
+    color: lime;
+}
+
+/*Rejestracja elo*/
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 900px;
+    height: 800px;
+}
+
+.link-register {
+    text-decoration: none;
+    color: lime;
+}
+
+.register-btn {
+    text-align: center;
+    margin: 10px;
+}
+
+
+/*Mobilne elo*/
+@media (max-width: 800px) {
+    .login-div {
+        width: 400px;
+        height: 300px;
+    }
+}
+
