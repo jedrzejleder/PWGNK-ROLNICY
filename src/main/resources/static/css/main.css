@@ -230,6 +230,10 @@ a {
     text-decoration: none;
 }
 
+.log-in {
+    color: lime;
+}
+
 .log-out {
     color: lime;
 }
