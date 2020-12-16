@@ -2,7 +2,7 @@ package net.javaguides.springboot.springsecurity.model;
 
 import javax.persistence.*;
 import java.util.Collection;
-
+import java.util.List;
 
 
 @Entity
@@ -11,7 +11,7 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long userId;
 
     private String email;
     private String password;
@@ -19,15 +19,21 @@ public class User {
     private String lastName;
     private String phone;
 
+    @OneToMany(mappedBy = "user_owner", cascade = {
+            CascadeType.ALL
+    })
+    private List<Article> articles;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
+                    name = "user_id", referencedColumnName = "userId"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
+
+
 
     public User() {
     }
@@ -40,21 +46,23 @@ public class User {
         this.phone=phone;
     }
 
-    public User(String firstName, String lastName, String email, String password, String phone, Collection<Role> roles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.phone=phone;
-        this.roles = roles;
+
+
+
+    public List<Article> getArticles() {
+        return articles;
     }
 
-    public Long getId() {
-        return id;
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long id) {
+        this.userId = id;
     }
 
     public String getFirstName() {
@@ -104,7 +112,7 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "id=" + id +
+                "id=" + userId +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
