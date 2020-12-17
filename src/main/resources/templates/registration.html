@@ -12,16 +12,14 @@
 </head>
 <body>
 <div class="container">
-    <!--    <div th:if="${param.success}">-->
-    <!--        <div class="alert alert-info">You've successfully registered-->
-    <!--            to our awesome app!-->
-    <!--        </div>-->
-    <!--    </div>-->
+        <div th:if="${param.success}">
+            <div class="alert alert-info">Zarejestrowano pomyślnie!</div>
+        </div>
 
     <div class="registration-div">
 
         <div class="login-text">
-            <span>Zarejestruj się</span>
+            <span>Stwórz nowe konto</span>
 
         </div>
 
@@ -49,7 +47,7 @@
                      th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
                     <input id="email" class="input" type="email" th:field="*{email}" placeholder="E-mail"/>
                     <p class="error-message"
-                       th:each="error : ${#fields.errors('email')}" th:text="${error}">Validation
+                       th:each="error : ${#fields.errors('email')}" th:text="${error}" >Validation
                         error</p>
                 </div>
 
@@ -87,8 +85,8 @@
                 <div class=""
                      th:classappend="${#fields.hasErrors('terms')}? 'has-error':''">
                     <input id="terms" type="checkbox" th:field="*{terms}"/>   <label
-                        style="color: whitesmoke;" for="terms"> I agree with the <a
-                        href="#" class="link-register">terms and conditions</a> for Registration.
+                        style="color: whitesmoke;" for="terms"> Zapoznałem się z <a
+                        href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="link-register">regulaminem oraz polityką prywatności</a> i akceptuje ich postanowienia.
                 </label>
                     <p class="error-message"
                        th:each="error : ${#fields.errors('terms')}" th:text="${error}">Validation
@@ -96,11 +94,11 @@
                 </div>
 
                 <div class="register-btn">
-                    <button type="submit" class="login-button">Register</button>
+                    <button type="submit" class="login-button">Zarejestruj się</button>
                 </div>
 
                 <div>
-                    <span style="color: whitesmoke;">Already registered? <a class="link-register" href="/" th:href="@{/login}">Login here</a></span>
+                    <span style="color: whitesmoke;">Masz już konto? <a class="link-register" href="/" th:href="@{/login}">Zaloguj się</a></span>
                 </div>
             </div>
         </form>

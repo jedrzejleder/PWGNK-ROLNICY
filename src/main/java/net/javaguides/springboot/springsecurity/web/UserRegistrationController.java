@@ -37,7 +37,39 @@ public class UserRegistrationController {
 
         User existing = userService.findByEmail(userDto.getEmail());
         if (existing != null){
-            result.rejectValue("email", null, "There is already an account registered with that email");
+            result.rejectValue("email", null, "Istnieje konto z podanym adresem email.");
+        }
+
+        if (!(userDto.getEmail().equals(userDto.getConfirmEmail()))) {
+            result.rejectValue("email", null, "Adresy email nie są identyczne.");
+        }
+
+        if (!(userDto.getPassword().equals(userDto.getConfirmPassword()))) {
+            result.rejectValue("password", null, "Hasła nie są identyczne.");
+        }
+
+        if (userDto.getPassword().equals("")) {
+            result.rejectValue("password", null, "Hasło nie może być puste.");
+        }
+
+        if (userDto.getEmail().equals("")) {
+            result.rejectValue("email", null, "Email nie może być pusty.");
+        }
+
+        if (userDto.getPhone().equals("")) {
+            result.rejectValue("phone", null, "Numer telefonu nie może być pusty.");
+        }
+
+        if (userDto.getFirstName().equals("")) {
+            result.rejectValue("firstName", null, "Imię nie może być puste.");
+        }
+
+        if (userDto.getLastName().equals("")) {
+            result.rejectValue("lastName", null, "Nazwisko nie może być puste.");
+        }
+
+        if (userDto.getTerms() == false) {
+            result.rejectValue("terms", null, "Pole jest wymagane.");
         }
 
         if (result.hasErrors()){
