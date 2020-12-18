@@ -21,6 +21,10 @@
             <span>Zaloguj się</span>
         </div>
         <form th:action="@{/login}" method="post">
+            <div th:if="${param.error}">
+                <div class="alert alert-danger">Nieprawidłowa nazwa użytkownika lub hasło.</div>
+            </div>
+
             <div>
                 <input id="username" class="input" name="username" type="text" placeholder="Email" />
             </div>
@@ -29,7 +33,7 @@
             </div>
             <div id="login-button" style="text-align: center">
                 <button class="login-button" type="submit" name="login-submit" id="login-submit">
-                    <a class="link-text" href="/">Zaloguj się</a>
+                    <a class="link-text">Zaloguj się</a>
                 </button>
             </div>
         </form>
