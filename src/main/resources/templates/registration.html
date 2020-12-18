@@ -25,28 +25,28 @@
 
         <form th:action="@{/registration}" th:object="${user}" method="post">
             <div class="form">
-                <p class="error-message" th:if="${#fields.hasGlobalErrors()}"
+                <p class="register-err" th:if="${#fields.hasGlobalErrors()}"
                    th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
                     error</p>
 
                 <div class=""
                      th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
                     <input id="firstName" class="input" th:field="*{firstName}" placeholder="Imię"/>
-                    <p class="error-message"
+                    <p class="register-err"
                        th:each="error: ${#fields.errors('firstName')}"
                        th:text="${error}">Validation error</p>
                 </div>
                 <div class=""
                      th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
                     <input id="lastName" class="input" th:field="*{lastName}" placeholder="Nazwisko"/>
-                    <p class="error-message"
+                    <p class="register-err"
                        th:each="error : ${#fields.errors('lastName')}"
                        th:text="${error}">Validation error</p>
                 </div>
                 <div class=""
                      th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
                     <input id="email" class="input" type="email" th:field="*{email}" placeholder="E-mail"/>
-                    <p class="error-message"
+                    <p class="register-err"
                        th:each="error : ${#fields.errors('email')}" th:text="${error}" >Validation
                         error</p>
                 </div>
@@ -55,21 +55,21 @@
                      th:classappend="${#fields.hasErrors('confirmEmail')}? 'has-error':''">
                     <input id="confirmEmail" class="input" type="email" th:field="*{confirmEmail}"
                            placeholder="Potwierdź e-mail"/>
-                    <p class="error-message"
+                    <p class="register-err"
                        th:each="error : ${#fields.errors('confirmEmail')}"
                        th:text="${error}">Validation error</p>
                 </div>
                 <div class=""
                      th:classappend="${#fields.hasErrors('phone')}? 'has-error':''">
                     <input id="phone" class="input" type="number" th:field="*{phone}" placeholder="Telefon"/>
-                    <p class="error-message"
+                    <p class="register-err"
                        th:each="error: ${#fields.errors('phone')}"
                        th:text="${error}">Validation error</p>
                 </div>
                 <div class=""
                      th:classappend="${#fields.hasErrors('password')}? 'has-error':''">
                     <input id="password" class="input" type="password" th:field="*{password}" placeholder="Hasło"/>
-                    <p class="error-message"
+                    <p class="register-err"
                        th:each="error : ${#fields.errors('password')}"
                        th:text="${error}">Validation error</p>
                 </div>
@@ -77,7 +77,7 @@
                      th:classappend="${#fields.hasErrors('confirmPassword')}? 'has-error':''">
                     <input id="confirmPassword" class="input" type="password" th:field="*{confirmPassword}"
                            placeholder="Powtórz hasło"/>
-                    <p class="error-message"
+                    <p class="register-err"
                        th:each="error : ${#fields.errors('confirmPassword')}"
                        th:text="${error}">Validation error</p>
                 </div>
@@ -88,7 +88,7 @@
                         style="color: whitesmoke;" for="terms"> Zapoznałem się z <a
                         href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="link-register">regulaminem oraz polityką prywatności</a> i akceptuje ich postanowienia.
                 </label>
-                    <p class="error-message"
+                    <p class="register-err"
                        th:each="error : ${#fields.errors('terms')}" th:text="${error}">Validation
                         error</p>
                 </div>
