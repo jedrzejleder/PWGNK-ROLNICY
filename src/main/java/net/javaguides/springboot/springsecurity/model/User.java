@@ -33,8 +33,6 @@ public class User {
                     name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles;
 
-
-
     public User() {
     }
 
@@ -45,9 +43,6 @@ public class User {
         this.password = password;
         this.phone = phone;
     }
-
-
-
 
     public List<Article> getArticles() {
         return articles;

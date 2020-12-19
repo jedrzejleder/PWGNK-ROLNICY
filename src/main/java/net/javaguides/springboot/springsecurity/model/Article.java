@@ -23,11 +23,11 @@ public class Article {
     @JoinColumn(name = "user_owner")
     private User user_owner;
 
-    @OneToOne(fetch = FetchType.LAZY,
+    /*@OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "article",
             optional = false)
-    private Transaction transaction;
+    private Transaction transaction;*/
 
 
 
@@ -91,6 +91,14 @@ public class Article {
     public void setAvailable(String available) {
         this.available = available;
     }
+
+    /*public Transaction getTransaction() {
+        return transaction;
+    }
+
+    public void setTransaction(Transaction transaction) {
+        this.transaction = transaction;
+    }*/
 
     public User getUser_owner() {
         return user_owner;

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="pl">
+<head>
+
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>LendMe - wypożycz swój sprzęt</title>
+
+    <link rel="stylesheet" href="../css/main.css">
+    <script src="https://kit.fontawesome.com/b64830dbde.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
+    <title>All articles</title>
+</head>
+<body>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${articles}" class="container my-5">
+                <p class="my-5">
+                    <a href="/students/signup" class="btn btn-primary"><i
+                            class="fas fa-user-plus ml-2"> Add Student</i></a>
+                </p>
+                <div class="col-md-10">
+                    <h2 th:case="null">No articles yet!</h2>
+                    <div th:case="*">
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>placeOfTheObject</th>
+                                <th>description</th>
+                                <th>price</th>
+                                <th>available</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="article : ${articles}">
+                                <td th:text="${article.name}"></td>
+                                <td th:text="${article.placeOfTheObject}"></td>
+                                <td th:text="${article.description}"></td>
+                                <td th:text="${article.price}"></td>
+                                <td th:text="${article.available}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
