@@ -1,0 +1,338 @@
+body {
+    margin: 0;
+}
+
+/*Login elo*/
+.container {
+    min-height: 100vh;
+    background-size: cover;
+    background-image: url("./images/poleL.jpg");
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container2
+{
+    position: absolute;
+    min-height: 100vh;
+    background-size: cover;
+    background: url("./images/poleL.jpg");
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    width: 100%;
+}
+
+.shadow {
+    position: relative;
+    top: 0;
+    right: 0;
+
+    backdrop-filter: opacity(0.8);
+}
+
+.login-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 800px;
+    height: 600px;
+}
+
+.login-text {
+    font-size: 50px;
+    background: -webkit-linear-gradient(lime, whitesmoke);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 20px;
+}
+
+.input {
+    margin: 5px;
+    padding: 10px;
+    font-size: 25px;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid lime;
+    outline: none;
+    border-radius: 10px;
+    color: whitesmoke;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.input::placeholder, .input:focus {
+    color: whitesmoke;
+}
+
+.input::placeholder {
+    opacity: 0.3;
+}
+
+.login-button {
+    background: -webkit-linear-gradient(lime, whitesmoke);
+    font-size: 20px;
+    color: whitesmoke;
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    width: 300px;
+    transition: all 0.2s;
+}
+
+.login-button:hover, .sub-buttons:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.sub-buttons {
+    padding: 10px;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    background: #333;
+    color: whitesmoke;
+    transition: all 0.2s;
+    margin: 10px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.link-text {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    z-index: 1;
+    width: 100%;
+}
+
+.header-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    width: 50vw;
+    z-index: 1;
+}
+
+.btn {
+    margin: 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    color: whitesmoke;
+    text-align: center;
+    align-self: center;
+}
+
+.btn:hover {
+    color: lime;
+    cursor: pointer;
+}
+
+/*Main elo*/
+.text {
+    color: whitesmoke;
+    transition: all 0.2s;
+    font-size: 20px;
+}
+
+.text:hover {
+    color: lime;
+}
+
+.lisc {
+    color: lime;
+    font-size: 20px;
+}
+
+.content {
+    z-index: 1;
+    margin: auto;
+}
+
+.hero-text {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.hero-shadow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 0;
+}
+
+.join-us {
+    text-decoration: none;
+    color: whitesmoke;
+    border: 1px solid whitesmoke;
+    background: transparent;
+    border-radius: 0.25rem;
+    transition: all 0.2s;
+    padding: 6px 12px;
+}
+
+.join-us:hover {
+    background: whitesmoke;
+    color: black;
+}
+
+.welcome {
+    font-size: 69px;
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+}
+
+.subwelcome {
+    font-size: 25px;
+    margin-bottom: 16px;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+}
+
+.log-in {
+    color: lime;
+}
+
+.log-out {
+    color: lime;
+}
+
+.log-out:active {
+    color: lime;
+}
+
+/*Rejestracja elo*/
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.register-err{
+    margin: 0;
+    color: red;
+    position: relative;
+    left: 10px;
+}
+
+.registration-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 900px;
+    height: 800px;
+}
+
+.link-register {
+    text-decoration: none;
+    color: lime;
+}
+
+.register-btn {
+    text-align: center;
+    margin: 10px;
+}
+
+/*Mobilne elo*/
+@media (max-width: 800px) {
+    .login-div {
+        width: 400px;
+        height: 300px;
+    }
+}
+/*menu*/
+.dropbtn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+}
+
+
+/* potrzebny do pozycjonowania zawartości listy rozwijanej */
+.dropdown {
+    max-width: 200px !important;
+    min-width: 160px !important;
+    top: 42px;
+    width: 235px !important;
+    padding: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.176) !important;
+    border: none !important;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+}
+
+/* zawartośc listy rozwijanej */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Linki w menu */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* To jest od linkow ktore zmieniaja kolor po najechaniu kursorem */
+.dropdown-content a:hover {background-color: #ddd;}
+
+/* od pokazywania menu rozwijanego gdy najezdziesz kursorem */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Zmienia kolor tła przycisku rozwijanej listy w sensie jej zawartosc xd */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+/* Tutaj zaczyna się wyglad tabelek i buttona do addArticle */
