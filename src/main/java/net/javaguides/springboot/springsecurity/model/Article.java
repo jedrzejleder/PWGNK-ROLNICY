@@ -7,7 +7,6 @@ import javax.persistence.*;
 @Table(name="Article")
 public class Article {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "articleId")
@@ -17,7 +16,7 @@ public class Article {
     private String placeOfTheObject;
     private String description;
     private String price;
-    private String available;
+    private Boolean available;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY )
     @JoinColumn(name = "user_owner")
@@ -29,13 +28,10 @@ public class Article {
             optional = false)
     private Transaction transaction;*/
 
-
-
-
     public Article(){
     }
 
-    public Article(Long articleId, String name, String placeOfTheObject, String description, String price, String available) {
+    public Article(Long articleId, String name, String placeOfTheObject, String description, String price, Boolean available) {
         this.articleId = articleId;
         this.name = name;
         this.placeOfTheObject = placeOfTheObject;
@@ -84,11 +80,11 @@ public class Article {
         this.price = price;
     }
 
-    public String getAvailable() {
+    public Boolean getAvailable() {
         return available;
     }
 
-    public void setAvailable(String available) {
+    public void setAvailable(Boolean available) {
         this.available = available;
     }
 

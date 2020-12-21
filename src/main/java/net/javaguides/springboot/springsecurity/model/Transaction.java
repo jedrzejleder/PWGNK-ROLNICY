@@ -17,14 +17,9 @@ public class Transaction {
     @JoinColumn(name = "user_owner",  unique=true)
     private User borrower;
 
-
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "article_id", referencedColumnName = "articleId",  nullable = false, unique=true)
     private Article article;
-
-
-
 
     public Transaction(Long transactionId, String price, User borrower) {
         this.price = price;

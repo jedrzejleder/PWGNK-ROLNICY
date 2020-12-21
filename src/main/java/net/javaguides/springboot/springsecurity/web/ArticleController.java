@@ -1,10 +1,15 @@
 package net.javaguides.springboot.springsecurity.web;
 
 import net.javaguides.springboot.springsecurity.model.Article;
+import net.javaguides.springboot.springsecurity.model.User;
 import net.javaguides.springboot.springsecurity.repository.ArticleRepository;
 import net.javaguides.springboot.springsecurity.service.ArticleService;
+import net.javaguides.springboot.springsecurity.service.UserService;
 import net.javaguides.springboot.springsecurity.web.dto.ArticleRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @Controller
@@ -36,7 +42,9 @@ public class ArticleController {
     }
 
     @GetMapping("/add")
-    public String showAddArticleForm(Model model) { return "/addArticle"; }
+    public String showAddArticleForm(Model model, @AuthenticationPrincipal User user) {
+        return "/addArticle";
+    }
 
     @PostMapping("/add")
     public String registerArticle(@ModelAttribute("article") @Valid ArticleRegistrationDto articleDto,

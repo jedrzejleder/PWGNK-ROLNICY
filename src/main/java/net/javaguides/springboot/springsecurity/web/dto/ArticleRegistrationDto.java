@@ -12,9 +12,6 @@ public class ArticleRegistrationDto {
     private String description;
     @NotEmpty
     private String price;
-    @NotEmpty
-    private String available;
-
 
     public String getName() {
         return name;
@@ -46,13 +43,5 @@ public class ArticleRegistrationDto {
 
     public void setPrice(String price) {
         this.price = price;
-    }
-
-    public String getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(String available) {
-        this.available = available;
     }
 }
