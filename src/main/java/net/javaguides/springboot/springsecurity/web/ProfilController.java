@@ -6,6 +6,7 @@ import net.javaguides.springboot.springsecurity.repository.ArticleRepository;
 import net.javaguides.springboot.springsecurity.repository.UserRepository;
 import net.javaguides.springboot.springsecurity.service.ArticleService;
 import net.javaguides.springboot.springsecurity.service.UserService;
+import net.javaguides.springboot.springsecurity.web.dto.UserRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -13,10 +14,12 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.security.Principal;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/profil")
@@ -36,21 +39,59 @@ public class ProfilController {
     @GetMapping("/display")
     public String showProfilePage(Model model)
     {
+        //pobranie adresu email aktualnie zalgoowanego użytkownika
         String currentUserName = "";
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             currentUserName = authentication.getName();
         }
+        //Utworzenie obiektu aktualnie zalogowanego użytkownika
         User user = userService.findByEmail(currentUserName);
+        //Dodanie aktualnego użytkownika do modelu, aby móc go wyświetlić
         model.addAttribute(user);
         return "/profil";
     }
 
     @GetMapping("/editProfile")
-    public String editProfile(){
-
+    public String editProfile(Model model)
+    {
+        //pobranie adresu email aktualnie zalgoowanego użytkownika
+        String currentUserName = "";
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            currentUserName = authentication.getName();
+        }
+        //Utworzenie obiektu aktualnie zalogowanego użytkownika
+        User user = userService.findByEmail(currentUserName);
+        //Dodanie aktualnego użytkownika do modelu, aby móc go wyświetlić
+        model.addAttribute(user);
         return "/editProfile";
     }
+
+    @PostMapping("/display")
+    public String editUserAccount(@ModelAttribute("user") User user, Model model)
+    {
+        String currentUserName = "";
+        //pobranie emaila aktualnego użytkownika z kontekstu aplikacji
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            currentUserName = authentication.getName();
+        }
+        //Utworzenie obiektu aktualnego użytkownika
+        User displayed = userService.findByEmail(currentUserName);
+        //Po to żeby wyświetlało wszystkie pola użytkownika po przejściu do profil/display
+        model.addAttribute(displayed);
+        //Zmiana poszczególnych pól aktualnie zalogowanego użytkownika
+        displayed.setEmail(user.getEmail());
+        displayed.setFirstName(user.getFirstName());
+        displayed.setLastName(user.getLastName());
+        displayed.setPhone(user.getPhone());
+        //update rekordu bazy zawierającego aktualnego użytkownika
+        userService.update(displayed);
+        return "/profil";
+    }
+
+
 
 
 /*    // Zapisywanie zmian w profilu uzytkownika

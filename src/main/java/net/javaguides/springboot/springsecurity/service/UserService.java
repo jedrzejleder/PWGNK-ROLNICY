@@ -12,4 +12,6 @@ public interface UserService extends UserDetailsService {
 
     User save(UserRegistrationDto registration);
 
+    User update(User user);
+
 }

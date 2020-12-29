@@ -58,19 +58,32 @@
         </div>
     </div>
     <div class="content">
-        <div>
-            <table class="table table-striped table-responsive-md">
-                <thead>
-                <tr>
-
-                </tr>
-                </thead>
-            </table>
-        </div>
         <div class = "profilUser-div">
-            <a class = "btn" th:href="@{/profil/edit}" role="button">Edytuj Profil</a>
+
+            <form th:action="@{/profil/display}" th:object="${user}" method="post">
+                <div class="form">
+                    <p class="register-err" th:if="${#fields.hasGlobalErrors()}"
+                       th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
+                        error</p>
+
+                    <div class=""
+                         th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
+                        <input id="firstName" class="input" th:field="${user.firstName}" placeholder="Imię"/>
+                        <p class="register-err"
+                           th:each="error: ${#fields.errors('firstName')}"
+                           th:text="${error}">Validation error</p>
+                        <input id="lastName" class="input" th:field="${user.lastName}" placeholder="Imię"/>
+                        <input id="phone" class="input" th:field="${user.phone}" placeholder="Imię"/>
+                        <input id="email" class="input" th:field="${user.email}" placeholder="Imię"/>
+                    </div>
+
+                    <div class="register-btn">
+                        <button type="submit" class="login-button">Zaktualizuj</button>
+                    </div>
         </div>
+            </form>
     </div>
+</div>
 </div>
 </body>
 </html>

@@ -28,8 +28,4 @@ public class MainController {
         return "profil";
     }
 
-    @GetMapping("profil/editProfile")
-    public String editProfile(){
-        return "editProfile";
-    }
 }
