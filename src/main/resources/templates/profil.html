@@ -9,12 +9,13 @@
     <title>LendMe - wypożycz swój sprzęt</title>
 
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/profilUser.css">
     <script src="https://kit.fontawesome.com/b64830dbde.js" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
-    <title>Registration</title>
+    <title>Profile</title>
 </head>
 <body>
 
@@ -50,7 +51,6 @@
                         <a th:href="@{/profil/display}">Profil</a>
                         <a href="#">Twoje Ogłoszenia</a>
                         <a th:href="@{/article/add}">Dodaj Ogłoszenie</a>
-
                         <a class="log-out" th:href="@{/logout}">Wyloguj</a>
                     </div>
                 </div>
@@ -58,10 +58,20 @@
         </div>
     </div>
     <div class="content">
-        <div class="hero-text">
-            <h1 class="welcome">Witaj w Lend<span style="color: lime">Me</span></h1>
-            <p class="subwelcome">Wypożyczaj sprzęt z najbliższej okolicy! </p>
-            <a type="button" class="join-us" href="/registration" sec:authorize="!isAuthenticated()">Dołącz do nas!</a>
+        <div>
+            <table class="table table-striped table-responsive-md">
+                <thead>
+                <tr>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.phone}"></td>
+                    <td th:text="${user.email}"></td>
+                </tr>
+                </thead>
+            </table>
+        </div>
+        <div class = "profilUser-div">
+            <a class = "btn" th:href="@{/profil/editProfile}" role="button">Edytuj Profil</a>
         </div>
     </div>
 </div>

@@ -22,4 +22,14 @@ public class MainController {
     public String userIndex() {
         return "user/index";
     }
+
+    @GetMapping("/profil")
+    public String userProfil(){
+        return "profil";
+    }
+
+    @GetMapping("profil/editProfile")
+    public String editProfile(){
+        return "editProfile";
+    }
 }
