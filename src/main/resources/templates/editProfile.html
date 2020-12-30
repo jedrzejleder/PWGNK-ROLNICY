@@ -66,7 +66,30 @@
                        th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
                         error</p>
 
-                    <div class="">
+                    <h2>Zmień twoje dane</h2>
+                    <div class = "container3">
+                        <h3>Imie</h3>
+                        <input class="form-control" type="text" th:field="${user.firstName}">
+                        <p class="edit-err" th:each="error: ${#fields.errors('firstName')}"
+                           th:text="${error}">Validation error</p>
+                        <h3>Nazwisko</h3>
+                        <input class="form-control" type="text" th:field="${user.lastName}">
+                        <p class="edit-err"
+                           th:each="error: ${#fields.errors('lastName')}"
+                           th:text="${error}">Validation error</p>
+                        <h3>Numer Telefonu</h3>
+                        <input class="form-control" type="text" th:field="${user.phone}">
+                        <p class="edit-err"
+                           th:each="error: ${#fields.errors('phone')}"
+                           th:text="${error}">Validation error</p>
+                        <h3>Email</h3>
+                        <input class="form-control" type="text" th:field="${user.email}">
+                        <p class="edit-err"
+                           th:each="error: ${#fields.errors('email')}"
+                           th:text="${error}">Validation error</p>
+                    </div>
+
+                   <!-- <div class="">
 
                         <input id="firstName" class="input" th:field="${user.firstName}" placeholder="Imię"/>
                         <p class="edit-err"
@@ -88,9 +111,10 @@
                            th:each="error: ${#fields.errors('email')}"
                            th:text="${error}">Validation error</p>
 
-                    </div>
-                    <div class="register-btn">
-                        <button type="submit" class="login-button">Zaktualizuj</button>
+                    </div>-->
+
+                    <div class="profilUser-div">
+                        <button class = "btn" type="submit" role="button">Zaktualizuj</button>
                     </div>
         </div>
             </form>
