@@ -46,7 +46,13 @@
     <div class="content">
 <div class="addArticle-div">
 
-    <form th:action="@{/article/add}" th:object="${article}" method="post">
+    <form th:action="@{/article/add}" th:object="${article}" method="post" enctype="multipart/form-data">
+
+        <div>
+            <label>Zdjęcie: </label>
+            <input type="file" name="image" accept="image/png, image/jpeg" />
+        </div>
+
         <div class="">
             <input id="name" class="input" th:field="*{name}" placeholder="Nazwa"/>
         </div>

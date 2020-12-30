@@ -335,4 +335,12 @@ a {
 /* Zmienia kolor tła przycisku rozwijanej listy w sensie jej zawartosc xd */
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
+/* Do zmiany wielkości zdjęć w listArticle */
+img {
+    float: left;
+    width:  100px;
+    height: 100px;
+    object-fit: cover;
+}
+
 /* Tutaj zaczyna się wyglad tabelek i buttona do addArticle */

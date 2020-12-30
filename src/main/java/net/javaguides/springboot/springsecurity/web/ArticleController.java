@@ -12,14 +12,14 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
 import javax.xml.crypto.Data;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -48,11 +48,19 @@ public class ArticleController {
 
     @PostMapping("/add")
     public String registerArticle(@ModelAttribute("article") @Valid ArticleRegistrationDto articleDto,
-                                  BindingResult result){
+                                  BindingResult result, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        articleDto.setPhoto(fileName);
+
+        Article savedArticle = articleService.save(articleDto);
+
+        String uploadDir = "article-photos/" + savedArticle.getArticleId();
+
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
         if(result.hasErrors()){ return  "/addArticle"; }
 
-        articleService.save(articleDto);
         return "redirect:/article/list";
     }
 
