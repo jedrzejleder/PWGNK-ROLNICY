@@ -2,6 +2,7 @@ package net.javaguides.springboot.springsecurity.model;
 
 
 import javax.persistence.*;
+import java.beans.Transient;
 
 @Entity
 @Table(name="Article")
@@ -17,6 +18,7 @@ public class Article {
     private String description;
     private String price;
     private Boolean available;
+    private String photo;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY )
     @JoinColumn(name = "user_owner")
@@ -31,13 +33,21 @@ public class Article {
     public Article(){
     }
 
-    public Article(Long articleId, String name, String placeOfTheObject, String description, String price, Boolean available) {
+    public Article(Long articleId, String name, String placeOfTheObject, String description, String price, Boolean available, String photo) {
         this.articleId = articleId;
         this.name = name;
         this.placeOfTheObject = placeOfTheObject;
         this.description = description;
         this.price = price;
         this.available = available;
+        this.photo = photo;
+    }
+
+    @Transient
+    public String getPhotosImagePath() {
+        if (photo == null || articleId == null) return null;
+
+        return "/article-photos/" + articleId + "/" + photo;
     }
 
     public Long getArticleId() {
@@ -88,6 +98,14 @@ public class Article {
         this.available = available;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
     /*public Transaction getTransaction() {
         return transaction;
     }
@@ -106,6 +124,6 @@ public class Article {
 
     @Override
     public String toString(){
-        return "Article [id= "+ articleId + " name= " + name + " placeOfTheObject= " + placeOfTheObject + " description= " + description + " price= " + price + " available= " + available +" ]";
+        return "Article [id= "+ articleId + " name= " + name + " placeOfTheObject= " + placeOfTheObject + " description= " + description + " price= " + price + " available= " + available + "photo= " + photo + " ]";
     }
 }

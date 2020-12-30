@@ -24,6 +24,7 @@ public class ArticleService {
         article.setPrice(registration.getPrice());
         article.setAvailable(true);
         article.setUser_owner(userService.loadCurrentUser());
+        article.setPhoto(registration.getPhoto());
         return articleRepository.save(article);
     }
 

@@ -38,6 +38,8 @@ public class UserRegistrationDto {
     @AssertTrue
     private Boolean terms;
 
+
+
     public String getFirstName() {
         return firstName;
     }

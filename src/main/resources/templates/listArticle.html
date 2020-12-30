@@ -27,6 +27,7 @@
                         <table class="table table-striped table-responsive-md">
                             <thead>
                             <tr>
+                                <th>Photo</th>
                                 <th>Name</th>
                                 <th>placeOfTheObject</th>
                                 <th>description</th>
@@ -36,6 +37,9 @@
                             </thead>
                             <tbody>
                             <tr th:each="article : ${articles}">
+                                <td>
+                                    <a th:href="@{${'/article-photos/' + article.articleId + '/' + article.photo}}" target="_blank">
+                                    <img th:src= "@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/></a></td>
                                 <td th:text="${article.name}"></td>
                                 <td th:text="${article.placeOfTheObject}"></td>
                                 <td th:text="${article.description}"></td>
