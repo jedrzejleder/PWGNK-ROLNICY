@@ -62,21 +62,33 @@
 
             <form th:action="@{/profil/display}" th:object="${user}" method="post">
                 <div class="form">
-                    <p class="register-err" th:if="${#fields.hasGlobalErrors()}"
+                    <p class="edit-err" th:if="${#fields.hasGlobalErrors()}"
                        th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation
                         error</p>
 
-                    <div class=""
-                         th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
+                    <div class="">
+
                         <input id="firstName" class="input" th:field="${user.firstName}" placeholder="Imię"/>
-                        <p class="register-err"
+                        <p class="edit-err"
                            th:each="error: ${#fields.errors('firstName')}"
                            th:text="${error}">Validation error</p>
-                        <input id="lastName" class="input" th:field="${user.lastName}" placeholder="Imię"/>
-                        <input id="phone" class="input" th:field="${user.phone}" placeholder="Imię"/>
-                        <input id="email" class="input" th:field="${user.email}" placeholder="Imię"/>
-                    </div>
 
+                        <input id="lastName" class="input" th:field="${user.lastName}" placeholder="Nazwisko"/>
+                        <p class="edit-err"
+                           th:each="error: ${#fields.errors('lastName')}"
+                           th:text="${error}">Validation error</p>
+
+                        <input id="phone" class="input" type="number" th:field="${user.phone}" placeholder="Telefon"/>
+                        <p class="edit-err"
+                           th:each="error: ${#fields.errors('phone')}"
+                           th:text="${error}">Validation error</p>
+
+                        <input id="email" class="input" type="email" th:field="${user.email}" placeholder="Email"/>
+                        <p class="edit-err"
+                           th:each="error: ${#fields.errors('email')}"
+                           th:text="${error}">Validation error</p>
+
+                    </div>
                     <div class="register-btn">
                         <button type="submit" class="login-button">Zaktualizuj</button>
                     </div>

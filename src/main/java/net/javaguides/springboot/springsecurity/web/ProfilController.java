@@ -69,7 +69,7 @@ public class ProfilController {
     }
 
     @PostMapping("/display")
-    public String editUserAccount(@ModelAttribute("user") User user, Model model)
+    public String editUserAccount(@ModelAttribute("user") User user, Model model, BindingResult result)
     {
         String currentUserName = "";
         //pobranie emaila aktualnego użytkownika z kontekstu aplikacji
@@ -87,6 +87,27 @@ public class ProfilController {
         displayed.setLastName(user.getLastName());
         displayed.setPhone(user.getPhone());
         //update rekordu bazy zawierającego aktualnego użytkownika
+
+        if (displayed.getFirstName().equals("")) {
+            result.rejectValue("firstName", null, "Imię nie może być puste.");
+        }
+
+        if (displayed.getLastName().equals("")) {
+            result.rejectValue("lastName", null, "Nazwisko nie może być puste.");
+        }
+
+        if (displayed.getEmail().equals("")) {
+            result.rejectValue("email", null, "Email nie może być pusty.");
+        }
+
+        if (displayed.getPhone().equals("")) {
+            result.rejectValue("phone", null, "Numer telefonu nie może być pusty.");
+        }
+
+        if (result.hasErrors()){
+            return "editProfile";
+        }
+
         userService.update(displayed);
         return "/profil";
     }

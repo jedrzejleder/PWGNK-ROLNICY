@@ -33,7 +33,7 @@
                      th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
                     <input id="firstName" class="input" th:field="*{firstName}" placeholder="Imię"/>
                     <p class="register-err"
-                       th:each="error: ${#fields.errors('firstName')}"
+                       th:each="error : ${#fields.errors('firstName')}"
                        th:text="${error}">Validation error</p>
                 </div>
                 <div class=""
