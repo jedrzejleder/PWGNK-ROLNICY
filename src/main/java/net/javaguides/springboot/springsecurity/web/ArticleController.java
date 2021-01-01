@@ -3,6 +3,7 @@ package net.javaguides.springboot.springsecurity.web;
 import net.javaguides.springboot.springsecurity.model.Article;
 import net.javaguides.springboot.springsecurity.model.User;
 import net.javaguides.springboot.springsecurity.repository.ArticleRepository;
+import net.javaguides.springboot.springsecurity.repository.UserRepository;
 import net.javaguides.springboot.springsecurity.service.ArticleService;
 import net.javaguides.springboot.springsecurity.service.UserService;
 import net.javaguides.springboot.springsecurity.web.dto.ArticleRegistrationDto;
@@ -27,13 +28,15 @@ import java.util.List;
 public class ArticleController {
 
     private final ArticleRepository articleRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private ArticleService articleService;
 
     @Autowired
-    public ArticleController(ArticleRepository articleRepository) {
+    public ArticleController(ArticleRepository articleRepository, UserRepository userRepository) {
         this.articleRepository = articleRepository;
+        this.userRepository = userRepository;
     }
 
     @ModelAttribute("article")
@@ -59,7 +62,9 @@ public class ArticleController {
 
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
-        if(result.hasErrors()){ return  "/addArticle"; }
+        if (result.hasErrors()) {
+            return "/addArticle";
+        }
 
         return "redirect:/article/list";
     }
@@ -69,4 +74,20 @@ public class ArticleController {
         model.addAttribute("articles", articleRepository.findAll());
         return "listArticle";
     }
+
+    @GetMapping("/{id}")
+    public String showArticle(@PathVariable("id") long id, Model model) {
+        Article article = articleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
+
+        User user = userRepository.findById(article.getUser_owner_id())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));;
+
+        model.addAttribute(article);
+        model.addAttribute(user);
+        return "showArticle";
+    }
+
+    //@PostMapping("/{id}")
+
 }
