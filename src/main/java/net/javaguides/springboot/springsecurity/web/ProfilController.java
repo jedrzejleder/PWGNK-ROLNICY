@@ -152,6 +152,21 @@ public class ProfilController {
         return "/profil";
     }
 
+    @GetMapping("/deleteUser")
+    public String deleteUserAccount(User user)
+    {
+        String currentUserName = "";
+        //pobranie emaila aktualnego użytkownika z kontekstu aplikacji
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            currentUserName = authentication.getName();
+        }
+        User display = userService.findByEmail(currentUserName);
+        userService.delete(display);
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return "redirect:http://localhost:8080";
+    }
+
 
 /*    // Zapisywanie zmian w profilu uzytkownika
     @RequestMapping(value = "save", method = RequestMethod.POST)

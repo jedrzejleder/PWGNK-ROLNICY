@@ -73,6 +73,11 @@ public class UserServiceImpl implements UserService {
         return user;
     }
 
+    public void delete(User user)
+    {
+        userRepository.delete(user);
+    }
+
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles){
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName()))
