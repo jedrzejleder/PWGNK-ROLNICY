@@ -32,18 +32,18 @@
 
         <div class="header-btn">
             <div class="btn">
-                Strona główna
+                <a class="green-hover" th:href="@{/}">Strona główna</a>
             </div>
             <div class="btn">
-                <a class="btn" th:href="@{/article/list}"> Oferty </a>
+                <a class="green-hover" th:href="@{/article/list}"> Oferty </a>
             </div>
-            <div class="btn" style="color: lime" sec:authorize="isAuthenticated()">
-                <a class="add-article" th:href="@{/article/add}">Wystaw produkt</a>
+            <div class="btn" sec:authorize="isAuthenticated()">
+                <a class="green-hover" th:href="@{/article/add}">Wystaw produkt</a>
             </div>
-            <div class="btn" style="color: lime" sec:authorize="!isAuthenticated()">
-                <a class="log-in" th:href="@{/login}">Zaloguj</a>
+            <div class="btn" sec:authorize="!isAuthenticated()">
+                <a class="log-in" style="color: lime" th:href="@{/login}">Zaloguj</a>
             </div>
-            <div class="btn" style="color: lime" sec:authorize="isAuthenticated()">
+            <div class="btn" sec:authorize="isAuthenticated()">
                 <div class="dropdown">
                     <div class = "dropbtn">Twoje Konto</div>
                     <div class="dropdown-content">

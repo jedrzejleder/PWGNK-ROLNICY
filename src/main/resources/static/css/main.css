@@ -243,6 +243,10 @@ a:link, a:visited {
     display: inline-block;
 }
 
+.green-hover:hover {
+    color: lime;
+}
+
 .log-in {
     color: lime;
 }
@@ -365,6 +369,20 @@ img {
 * {box-sizing: border-box}
 
 /* Set a style for all buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+    transition: color .3s, opacity.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+}
+
 .button {
   background-color: #4CAF50;
   color: white;
