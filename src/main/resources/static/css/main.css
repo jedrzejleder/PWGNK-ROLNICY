@@ -365,6 +365,9 @@ img {
   cursor: pointer;
   width: 100%;
   opacity: 0.9;
+    transition: color .3s, opacity.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
 }
 
 .button:hover {
@@ -383,13 +386,18 @@ img {
   color: black;
 }
 
+.deletebtn:hover {
+    color: lime;
+}
+
 /* Add a color to the delete button */
 .deletebtn {
-  background-color: #f44336;
+    background-color: #f44336;
+    text-transform: uppercase;
 }
 
 /* Add padding and center-align text to the container */
-.container {
+.popup-container {
   padding: 16px;
   text-align: center;
 }
@@ -404,8 +412,8 @@ img {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
-  padding-top: 50px;
+  background-color: rgba(0, 0, 0, 0.8);
+  padding-top: 100px;
 }
 
 /* Modal Content/Box */
@@ -420,22 +428,6 @@ img {
 hr {
   border: 1px solid #f1f1f1;
   margin-bottom: 25px;
-}
-
-/* The Modal Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
-
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
 }
 
 /* Clear floats */

@@ -78,15 +78,14 @@
     </div>
 
     <div id="id01" class="modal">
-        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
         <form class="modal-content" action="/action_page.php">
-            <div class="container">
-                <h1>Delete Account</h1>
-                <p>Are you sure you want to delete your account?</p>
+            <div class="popup-container">
+                <h1>Usuwanie konta!</h1>
+                <p>Czy na pewno chcesz usunąć konto?</p>
 
                 <div class="clearfix">
-                    <button onclick="document.getElementById('id01').style.display='none'" class="button cancelbtn">Cofnij</button>
-                    <a class = "button deletebtn" th:href="@{/profil/deleteUser}" role="button">Usuń Konto</a>
+                    <button onclick="document.getElementById('id01').style.display='none'" class="button cancelbtn" type="button">Cofnij</button>
+                    <a class="button deletebtn" th:href="@{/profil/deleteUser}" role="button">Usuń</a>
                 </div>
             </div>
         </form>
