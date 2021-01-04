@@ -57,15 +57,18 @@ body {
 }
 
 .input {
-    margin: 5px;
-    padding: 10px;
+    margin: 12px;
+    margin-left: 12px;
+    padding: 11px;
     font-size: 25px;
     background: rgba(0, 0, 0, 0.5);
     border: 1px solid lime;
     outline: none;
-    border-radius: 10px;
+    border-radius: 14px;
     color: whitesmoke;
+    margin-left: 15px;
 }
+
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -84,7 +87,7 @@ input[type=number]::-webkit-outer-spin-button {
     background: -webkit-linear-gradient(lime, whitesmoke);
     font-size: 20px;
     color: whitesmoke;
-    margin: 10px;
+    margin: 1px;
     padding: 10px;
     border: none;
     border-radius: 20px;
@@ -341,6 +344,10 @@ img {
     width:  100px;
     height: 100px;
     object-fit: cover;
+}
+.adding{
+    font-family: 'Montserrat', sans-serif;
+    text-decoration-color: #bbbbbb;
 }
 
 /* Tutaj zaczyna się wyglad tabelek i buttona do addArticle */
