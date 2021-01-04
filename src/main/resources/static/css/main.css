@@ -94,6 +94,7 @@ input[type=number]::-webkit-outer-spin-button {
     outline: none;
     width: 300px;
     transition: all 0.2s;
+    margin-left: 0px;
 }
 
 .login-button:hover, .sub-buttons:hover {
