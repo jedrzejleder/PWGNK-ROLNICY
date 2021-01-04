@@ -35,10 +35,10 @@
                 Strona główna
             </div>
             <div class="btn">
-                <a th:href="@{/article/list}"> Oferty </a>
+                <a class="btn" th:href="@{/article/list}"> Oferty </a>
             </div>
             <div class="btn" style="color: lime" sec:authorize="isAuthenticated()">
-                <a class="add-article" th:href="@{/article/add}">Wystaw produkt</a>
+                <a class="btn" th:href="@{/article/add}">Wystaw produkt</a>
             </div>
             <div class="btn" style="color: lime" sec:authorize="!isAuthenticated()">
                 <a class="log-in" th:href="@{/login}">Zaloguj</a>

@@ -84,7 +84,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .login-button {
-    background: -webkit-linear-gradient(lime, whitesmoke);
+    background: -webkit-linear-gradient(lime, darkgreen);
     font-size: 20px;
     color: whitesmoke;
     margin: 1px;
@@ -329,6 +329,7 @@ a {
     text-decoration: none;
     display: block;
 }
+
 
 /* To jest od linkow ktore zmieniaja kolor po najechaniu kursorem */
 .dropdown-content a:hover {background-color: #ddd;}
