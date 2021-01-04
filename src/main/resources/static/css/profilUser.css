@@ -53,10 +53,20 @@ button:hover{
 /* Add a background color and some padding around the form */
 .container3 {
     width: 600px;
+    height: 420px;
     color: #cccccc;
     padding: 15px;
     background: rgba(40,40,40,0.7);
     border-radius: 10px;
+}
+
+/* Przyciski edycji konta */
+.profilUser-div {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    line-height: 16px;
 }
 
 h3{

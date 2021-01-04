@@ -235,6 +235,10 @@ a {
     text-decoration: none;
 }
 
+.profilUser-div a {
+    display: inline-block;
+}
+
 .log-in {
     color: lime;
 }

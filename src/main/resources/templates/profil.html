@@ -61,20 +61,21 @@
         <h2>Twoje Dane</h2>
         <div class = "container3">
             <h3>Imie</h3>
-        <input class="form-control" type="text" th:field="${user.firstName}" readonly>
+            <input class="form-control" type="text" th:field="${user.firstName}" readonly>
             <h3>Nazwisko</h3>
-        <input class="form-control" type="text" th:field="${user.lastName}" readonly>
+            <input class="form-control" type="text" th:field="${user.lastName}" readonly>
             <h3>Numer Telefonu</h3>
-        <input class="form-control" type="text" th:field="${user.phone}" readonly>
+            <input class="form-control" type="text" th:field="${user.phone}" readonly>
             <h3>Email</h3>
-        <input class="form-control" type="text" th:field="${user.email}" readonly>
-    </div>
-        <div class = "profilUser-div">
-            <a class = "btn" th:href="@{/profil/editProfile}" role="button">Edytuj Profil</a>
-            <a class = "btn" th:href="@{/profil/editPassword}" role="button">Zmień Hasło</a>
-<!--            <a class = "btn" th:href="@{/profil/deleteUser}" role="button">Usuń Konto</a>-->
-            <a class = "btn" role="button" onclick="document.getElementById('id01').style.display='block'">Usuń konto</a>
+            <input class="form-control" type="text" th:field="${user.email}" readonly>
+
+            <div class = "profilUser-div">
+                <a class = "btn" th:href="@{/profil/editProfile}" role="button">Edytuj Profil</a>
+                <a class = "btn" th:href="@{/profil/editPassword}" role="button">Zmień Hasło</a>
+                <a class = "btn" role="button" onclick="document.getElementById('id01').style.display='block'">Usuń konto</a>
+            </div>
         </div>
+
     </div>
 
     <div id="id01" class="modal">
