@@ -33,13 +33,13 @@
 
         <div class="header-btn">
             <div class="btn">
-                Strona główna
+                <a class="green-hover" th:href="@{/}">Strona główna</a>
             </div>
             <div class="btn">
-                <a th:href="@{/article/list}"> Oferty </a>
+                <a class="green-hover" th:href="@{/article/list}"> Oferty </a>
             </div>
             <div class="btn" style="color: lime" sec:authorize="isAuthenticated()">
-                <a class="add-article" th:href="@{/article/add}">Wystaw produkt</a>
+                <a class="green-hover" th:href="@{/article/add}">Wystaw produkt</a>
             </div>
             <div class="btn" style="color: lime" sec:authorize="!isAuthenticated()">
                 <a class="log-in" th:href="@{/login}">Zaloguj</a>
@@ -61,19 +61,35 @@
         <h2>Twoje Dane</h2>
         <div class = "container3">
             <h3>Imie</h3>
-        <input class="form-control" type="text" th:field="${user.firstName}" readonly>
+            <input class="form-control" type="text" th:field="${user.firstName}" readonly>
             <h3>Nazwisko</h3>
-        <input class="form-control" type="text" th:field="${user.lastName}" readonly>
+            <input class="form-control" type="text" th:field="${user.lastName}" readonly>
             <h3>Numer Telefonu</h3>
-        <input class="form-control" type="text" th:field="${user.phone}" readonly>
+            <input class="form-control" type="text" th:field="${user.phone}" readonly>
             <h3>Email</h3>
-        <input class="form-control" type="text" th:field="${user.email}" readonly>
-    </div>
-        <div class = "profilUser-div">
-            <a class = "btn" th:href="@{/profil/editProfile}" role="button">Edytuj Profil</a>
-            <a class = "btn" th:href="@{/profil/editPassword}" role="button">Zmień Hasło</a>
-            <a class = "btn" th:href="@{/profil/deleteUser}" role="button">Usuń Konto</a>
+            <input class="form-control" type="text" th:field="${user.email}" readonly>
+
+            <div class = "profilUser-div">
+                <a class = "btn" th:href="@{/profil/editProfile}" role="button">Edytuj Profil</a>
+                <a class = "btn" th:href="@{/profil/editPassword}" role="button">Zmień Hasło</a>
+                <a class = "btn" role="button" onclick="document.getElementById('id01').style.display='block'">Usuń konto</a>
+            </div>
         </div>
+
+    </div>
+
+    <div id="id01" class="modal">
+        <form class="modal-content" action="/action_page.php">
+            <div class="popup-container">
+                <h1>Usuwanie konta!</h1>
+                <p>Czy na pewno chcesz usunąć konto?</p>
+
+                <div class="clearfix">
+                    <button onclick="document.getElementById('id01').style.display='none'" class="button cancelbtn" type="button">Cofnij</button>
+                    <a class="button deletebtn" th:href="@{/profil/deleteUser}" role="button">Usuń</a>
+                </div>
+            </div>
+        </form>
     </div>
 
 </div>
