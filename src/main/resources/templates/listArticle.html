@@ -38,13 +38,14 @@
                             <tbody>
                             <tr th:each="article : ${articles}">
                                 <td>
-                                    <a th:href="@{${'/article-photos/' + article.articleId + '/' + article.photo}}" target="_blank">
-                                    <img th:src= "@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/></a></td>
+                                    <img th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/></a>
+                                </td>
                                 <td th:text="${article.name}"></td>
                                 <td th:text="${article.placeOfTheObject}"></td>
                                 <td th:text="${article.description}"></td>
                                 <td th:text="${article.price}"></td>
-                                <td th:text="${article.available}"></td>
+                                <td><a th:href="@{/article/{id}(id=${article.articleId})}" class="btn btn-primary"><i
+                                        class="fas fa-user-edit ml-2"></i></a></td>
                             </tr>
                             </tbody>
                         </table>
