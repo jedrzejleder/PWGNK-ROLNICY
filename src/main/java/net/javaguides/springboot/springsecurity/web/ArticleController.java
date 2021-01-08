@@ -45,7 +45,7 @@ public class ArticleController {
     }
 
     @GetMapping("/add")
-    public String showAddArticleForm(Model model, @AuthenticationPrincipal User user) {
+    public String showAddArticleForm(Model model) {
         return "/addArticle";
     }
 
@@ -88,6 +88,10 @@ public class ArticleController {
         return "showArticle";
     }
 
-    //@PostMapping("/{id}")
+    @GetMapping("/listMy")
+    public String showMyArticles(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("myArticles", articleRepository.searchArticlesForUser(user));
+        return "listMyArticle";
+    }
 
 }
