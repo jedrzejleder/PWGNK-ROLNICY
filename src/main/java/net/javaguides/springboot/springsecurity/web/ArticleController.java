@@ -74,7 +74,7 @@ public class ArticleController {
 
     @GetMapping("/list")
     public String showUpdateForm(Model model) {
-        model.addAttribute("articles", articleRepository.findAll());
+        model.addAttribute("articles", articleRepository.findAllAvailable());
         return "listArticle";
     }
 
@@ -96,6 +96,19 @@ public class ArticleController {
         User currUser = userService.loadCurrentUser();
         model.addAttribute("myArticles", currUser.getArticles());
         return "listMyArticle";
+    }
+
+    @GetMapping("/listMy/{id}")
+    public String changeAvailability(@PathVariable("id") long id, Model model) {
+        User currUser = userService.loadCurrentUser();
+        model.addAttribute("myArticles", currUser.getArticles());
+
+        Article article = articleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
+
+        article.setAvailable(!article.getAvailable());
+        articleService.updateArticle(article);
+        return "redirect:/article/listMy";
     }
 
 }

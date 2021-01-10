@@ -29,5 +29,5 @@ public class ArticleService {
         return articleRepository.save(article);
     }
 
-
+    public Article updateArticle(Article article) {return articleRepository.save(article);}
 }
