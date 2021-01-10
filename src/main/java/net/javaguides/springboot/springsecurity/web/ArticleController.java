@@ -34,6 +34,9 @@ public class ArticleController {
     private ArticleService articleService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     public ArticleController(ArticleRepository articleRepository, UserRepository userRepository) {
         this.articleRepository = articleRepository;
         this.userRepository = userRepository;
@@ -89,8 +92,9 @@ public class ArticleController {
     }
 
     @GetMapping("/listMy")
-    public String showMyArticles(Model model, @AuthenticationPrincipal User user) {
-        model.addAttribute("myArticles", articleRepository.searchArticlesForUser(user));
+    public String showMyArticles(Model model) {
+        User currUser = userService.loadCurrentUser();
+        model.addAttribute("myArticles", currUser.getArticles());
         return "listMyArticle";
     }
 

@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
-    @Query("select a from Article a where a.user_owner.userId = ?#{user.userId}")
-    List<Article> searchArticlesForUser(@Param("user") User user);
+    @Query("select a from Article a where a.user_owner = ?#{user}")
+    List<Article> searchArticlesForUser(User user);
 }
