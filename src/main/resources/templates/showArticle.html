@@ -9,12 +9,13 @@
     <title>LendMe - wypożycz swój sprzęt</title>
 
     <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/profilUser.css">
     <script src="https://kit.fontawesome.com/b64830dbde.js" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
 
-    <title>Registration</title>
+    <title>Profile</title>
 </head>
 <body>
 
@@ -32,38 +33,45 @@
 
         <div class="header-btn">
             <div class="btn">
-                <a class="green-hover" th:href="@{/}">Strona główna</a>
+                Strona główna
             </div>
             <div class="btn">
-                <a class="green-hover" th:href="@{/article/list}"> Oferty </a>
+                <a th:href="@{/article/list}"> Oferty </a>
             </div>
-            <div class="btn" sec:authorize="isAuthenticated()">
-                <a class="green-hover" th:href="@{/article/add}">Wystaw produkt</a>
+            <div class="btn" style="color: lime" sec:authorize="isAuthenticated()">
+                <a class="add-article" th:href="@{/article/add}">Wystaw produkt</a>
             </div>
-            <div class="btn" sec:authorize="!isAuthenticated()">
-                <a class="log-in" style="color: lime" th:href="@{/login}">Zaloguj</a>
+            <div class="btn" style="color: lime" sec:authorize="!isAuthenticated()">
+                <a class="log-in" th:href="@{/login}">Zaloguj</a>
             </div>
-            <div class="btn" sec:authorize="isAuthenticated()">
+            <div class="btn" style="color: lime" sec:authorize="isAuthenticated()">
                 <div class="dropdown">
-                    <div class = "dropbtn">Twoje Konto</div>
+                    <div class="dropbtn">Twoje Konto</div>
                     <div class="dropdown-content">
                         <a th:href="@{/profil/display}">Profil</a>
-                        <a th:href="@{/article/listMy}">Twoje Ogłoszenia</a>
+                        <a href="#">Twoje Ogłoszenia</a>
                         <a th:href="@{/article/add}">Dodaj Ogłoszenie</a>
-
                         <a class="log-out" th:href="@{/logout}">Wyloguj</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
     <div class="content">
-        <div class="hero-text">
-            <h1 class="welcome">Witaj w Lend<span style="color: lime">Me</span></h1>
-            <p class="subwelcome">Wypożyczaj sprzęt z najbliższej okolicy! </p>
-            <a type="button" class="join-us" href="/registration" sec:authorize="!isAuthenticated()">Dołącz do nas!</a>
-        </div>
+        <div class="container3">
+            <img class="form-control" th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/>
+            <h3>Opis</h3>
+            <input class="form-control" type="text" th:field="${article.description}" readonly>
+            <h3>Położenie</h3>
+            <input class="form-control" type="text" th:field="${article.placeOfTheObject}" readonly>
+            <h3>Cena</h3>
+            <input class="form-control" type="text" th:field="${article.price}" readonly>
+            <h3>Tel właściciela</h3>
+            <input class="form-control" type="text" th:field="${user.phone}" readonly>
     </div>
+
 </div>
 </body>
 </html>

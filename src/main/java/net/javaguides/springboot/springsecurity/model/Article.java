@@ -122,6 +122,10 @@ public class Article {
         this.user_owner = user_owner;
     }
 
+    public long getUser_owner_id() {
+        return user_owner.getUserId();
+    }
+
     @Override
     public String toString(){
         return "Article [id= "+ articleId + " name= " + name + " placeOfTheObject= " + placeOfTheObject + " description= " + description + " price= " + price + " available= " + available + "photo= " + photo + " ]";

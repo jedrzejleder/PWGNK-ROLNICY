@@ -46,7 +46,7 @@
 <div class="container my-2">
     <div class="card">
         <div class="card-body">
-            <div th:switch="${articles}" class="container my-5">
+            <div th:switch="${myArticles}" class="container my-5">
                 <div class="col-md-10">
                     <h2 th:case="null">No articles yet!</h2>
                     <div th:case="*">
@@ -62,7 +62,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr th:each="article : ${articles}">
+                            <tr th:each="article : ${myArticles}">
                                 <td>
                                     <img th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/></a>
                                 </td>
@@ -70,7 +70,8 @@
                                 <td th:text="${article.placeOfTheObject}"></td>
                                 <td th:text="${article.description}"></td>
                                 <td th:text="${article.price}"></td>
-                                <td><a th:href="@{/article/{id}(id=${article.articleId})}" class="btn btn-primary"><i
+                                //Tu musi być zmienianie dostępności produktu
+                                <td><a th:href="@{/article/listMy/{id}(id=${article.articleId})}" class="btn btn-primary"><i
                                         class="fas fa-user-edit ml-2"></i></a></td>
                             </tr>
                             </tbody>

@@ -3,6 +3,7 @@ package net.javaguides.springboot.springsecurity.web;
 import net.javaguides.springboot.springsecurity.model.Article;
 import net.javaguides.springboot.springsecurity.model.User;
 import net.javaguides.springboot.springsecurity.repository.ArticleRepository;
+import net.javaguides.springboot.springsecurity.repository.UserRepository;
 import net.javaguides.springboot.springsecurity.service.ArticleService;
 import net.javaguides.springboot.springsecurity.service.UserService;
 import net.javaguides.springboot.springsecurity.web.dto.ArticleRegistrationDto;
@@ -27,13 +28,18 @@ import java.util.List;
 public class ArticleController {
 
     private final ArticleRepository articleRepository;
+    private UserRepository userRepository;
 
     @Autowired
     private ArticleService articleService;
 
     @Autowired
-    public ArticleController(ArticleRepository articleRepository) {
+    private UserService userService;
+
+    @Autowired
+    public ArticleController(ArticleRepository articleRepository, UserRepository userRepository) {
         this.articleRepository = articleRepository;
+        this.userRepository = userRepository;
     }
 
     @ModelAttribute("article")
@@ -42,7 +48,7 @@ public class ArticleController {
     }
 
     @GetMapping("/add")
-    public String showAddArticleForm(Model model, @AuthenticationPrincipal User user) {
+    public String showAddArticleForm(Model model) {
         return "/addArticle";
     }
 
@@ -59,14 +65,50 @@ public class ArticleController {
 
         FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
-        if(result.hasErrors()){ return  "/addArticle"; }
+        if (result.hasErrors()) {
+            return "/addArticle";
+        }
 
         return "redirect:/article/list";
     }
 
     @GetMapping("/list")
     public String showUpdateForm(Model model) {
-        model.addAttribute("articles", articleRepository.findAll());
+        model.addAttribute("articles", articleRepository.findAllAvailable());
         return "listArticle";
     }
+
+    @GetMapping("/{id}")
+    public String showArticle(@PathVariable("id") long id, Model model) {
+        Article article = articleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
+
+        User user = userRepository.findById(article.getUser_owner_id())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));;
+
+        model.addAttribute(article);
+        model.addAttribute(user);
+        return "showArticle";
+    }
+
+    @GetMapping("/listMy")
+    public String showMyArticles(Model model) {
+        User currUser = userService.loadCurrentUser();
+        model.addAttribute("myArticles", currUser.getArticles());
+        return "listMyArticle";
+    }
+
+    @GetMapping("/listMy/{id}")
+    public String changeAvailability(@PathVariable("id") long id, Model model) {
+        User currUser = userService.loadCurrentUser();
+        model.addAttribute("myArticles", currUser.getArticles());
+
+        Article article = articleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
+
+        article.setAvailable(!article.getAvailable());
+        articleService.updateArticle(article);
+        return "redirect:/article/listMy";
+    }
+
 }
