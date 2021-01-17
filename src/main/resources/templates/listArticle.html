@@ -17,70 +17,88 @@
     <title>All articles</title>
 </head>
 <body>
-<div class="header-btn">
-    <div class="btn">
-        <a class="green-hover" th:href="@{/}">Strona główna</a>
-    </div>
-    <div class="btn">
-        <a class="green-hover" th:href="@{/article/list}"> Oferty </a>
-    </div>
-    <div class="btn" sec:authorize="isAuthenticated()">
-        <a class="green-hover" th:href="@{/article/add}">Wystaw produkt</a>
-    </div>
-    <div class="btn" sec:authorize="!isAuthenticated()">
-        <a class="log-in" style="color: lime" th:href="@{/login}">Zaloguj</a>
-    </div>
-    <div class="btn" sec:authorize="isAuthenticated()">
-        <div class="dropdown">
-            <div class="dropbtn">Twoje Konto</div>
-            <div class="dropdown-content">
-                <a th:href="@{/profil/display}">Profil</a>
-                <a th:href="@{/article/listMy}">Twoje Ogłoszenia</a>
-                <a th:href="@{/article/add}">Dodaj Ogłoszenie</a>
 
-                <a class="log-out" th:href="@{/logout}">Wyloguj</a>
-            </div>
+<div class="container2">
+    <div class="hero-shadow"></div>
+    <div class="header ">
+        <div class="btn">
+            <a href="/">
+                <i class="fas fa-leaf lisc"></i>
+                <span class="text">Lend</span>
+                <span class="lisc">Me</span>
+            </a>
         </div>
-    </div>
-</div>
-<div class="container my-2">
-    <div class="card">
-        <div class="card-body">
-            <div th:switch="${articles}" class="container my-5">
-                <div class="col-md-10">
-                    <h2 th:case="null">No articles yet!</h2>
-                    <div th:case="*">
-                        <table class="table table-striped table-responsive-md">
-                            <thead>
-                            <tr>
-                                <th>Photo</th>
-                                <th>Name</th>
-                                <th>placeOfTheObject</th>
-                                <th>description</th>
-                                <th>price</th>
-                                <th>available</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr th:each="article : ${articles}">
-                                <td>
-                                    <img th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/></a>
-                                </td>
-                                <td th:text="${article.name}"></td>
-                                <td th:text="${article.placeOfTheObject}"></td>
-                                <td th:text="${article.description}"></td>
-                                <td th:text="${article.price}"></td>
-                                <td><a th:href="@{/article/{id}(id=${article.articleId})}" class="btn btn-primary"><i
-                                        class="fas fa-user-edit ml-2"></i></a></td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
 
+
+        <div class="header-btn">
+            <div class="btn">
+                <a class="green-hover" th:href="@{/}">Strona główna</a>
+            </div>
+            <div class="btn">
+                <a class="green-hover" th:href="@{/article/list}"> Oferty </a>
+            </div>
+            <div class="btn" style="color: lime" sec:authorize="isAuthenticated()">
+                <a class="green-hover" th:href="@{/article/add}">Wystaw produkt</a>
+            </div>
+            <div class="btn" style="color: lime" sec:authorize="!isAuthenticated()">
+                <a class="log-in" th:href="@{/login}">Zaloguj</a>
+            </div>
+            <div class="btn" style="color: lime" sec:authorize="isAuthenticated()">
+                <div class="dropdown">
+                    <div class = "dropbtn">Twoje Konto</div>
+                    <div class="dropdown-content">
+                        <a th:href="@{/profil/display}">Profil</a>
+                        <a href="#">Twoje Ogłoszenia</a>
+                        <a th:href="@{/article/add}">Dodaj Ogłoszenie</a>
+                        <a class="log-out" th:href="@{/logout}">Wyloguj</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="test">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${articles}" class="my-5">
+                    <div class="col-md-10">
+                        <h2 th:case="null">No articles yet!</h2>
+                        <div th:case="*">
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                <tr>
+                                    <th>Zdjęcie</th>
+                                    <th>Nazwa</th>
+                                    <th>Lokalizacja</th>
+                                    <th>Opis</th>
+                                    <th>Cena</th>
+                                    <th>Dostępność</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr th:each="article : ${articles}">
+                                    <td>
+                                        <img th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/></a>
+                                    </td>
+                                    <td th:text="${article.name}"></td>
+                                    <td th:text="${article.placeOfTheObject}"></td>
+                                    <td th:text="${article.description}"></td>
+                                    <td th:text="${article.price}"></td>
+                                    <td><a th:href="@{/article/{id}(id=${article.articleId})}" class="btn btn-primary"><i
+                                            class="fas fa-user-edit ml-2"></i></a></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
+
+
 </body>
 </html>
