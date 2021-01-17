@@ -29,6 +29,15 @@ body {
     width: 100%;
 }
 
+.container3 {
+    width: 600px;
+    height: 420px;
+    color: #cccccc;
+    padding: 15px;
+    background: rgba(40,40,40,0.7);
+    border-radius: 10px;
+}
+
 .shadow {
     position: relative;
     top: 0;
@@ -354,7 +363,6 @@ a:link, a:visited {
 
 /* Do zmiany wielkości zdjęć w listArticle */
 img {
-    float: left;
     width:  100px;
     height: 100px;
     object-fit: cover;
@@ -469,6 +477,34 @@ hr {
   .cancelbtn, .deletebtn {
     width: 100%;
   }
+}
+/*Wygląd tabeli z artykułami*/
+.z-index-fix {
+    z-index: 100;
+}
+
+table {
+    margin-top: 20px;
+    width: 1000px;
+    padding: 20px;
+    color: #cccccc;
+    background: rgba(40,40,40,0.7);
+    border-radius: 10px;
+}
+
+thead {
+    color: lime;
+    font-size: 20px;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+td img{
+    display: block;
+    margin: 0 auto;
+
 }
 
 /* Tutaj zaczyna się wyglad tabelek i buttona do addArticle */
