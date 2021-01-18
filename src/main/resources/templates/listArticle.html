@@ -69,9 +69,9 @@
                                     <th>Zdjęcie</th>
                                     <th>Nazwa</th>
                                     <th>Lokalizacja</th>
-                                    <th>Opis</th>
+<!--                                    <th>Opis</th>-->
                                     <th>Cena</th>
-                                    <th>Dostępność</th>
+                                    <th>Szczegóły</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -81,7 +81,7 @@
                                     </td>
                                     <td th:text="${article.name}"></td>
                                     <td th:text="${article.placeOfTheObject}"></td>
-                                    <td th:text="${article.description}"></td>
+<!--                                    <td th:text="${article.description}"></td>-->
                                     <td th:text="${article.price}"></td>
                                     <td><a th:href="@{/article/{id}(id=${article.articleId})}" class="btn btn-primary"><i
                                             class="fas fa-user-edit ml-2"></i></a></td>

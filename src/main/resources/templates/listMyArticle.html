@@ -69,9 +69,9 @@
                                     <th>Zdjęcie</th>
                                     <th>Nazwa</th>
                                     <th>Lokalizacja</th>
-                                    <th>Opis</th>
+<!--                                    <th>Opis</th>-->
                                     <th>Cena</th>
-                                    <th>Dostępność</th>
+                                    <th>Zmień dostępność</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -81,9 +81,8 @@
                                     </td>
                                     <td th:text="${article.name}"></td>
                                     <td th:text="${article.placeOfTheObject}"></td>
-                                    <td th:text="${article.description}"></td>
+<!--                                    <td th:text="${article.description}"></td>-->
                                     <td th:text="${article.price}"></td>
-                                    //Tu musi być zmienianie dostępności produktu
                                     <td><a th:href="@{/article/listMy/{id}(id=${article.articleId})}" class="btn btn-primary"><i
                                             class="fas fa-user-edit ml-2"></i></a></td>
                                 </tr>
