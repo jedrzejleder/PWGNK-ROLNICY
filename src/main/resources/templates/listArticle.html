@@ -56,13 +56,31 @@
             </div>
         </div>
     </div>
+
+
     <div class="z-index-fix">
+
+        <form th:action="@{/article/list}">
+            Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+            <input type="submit" value="Search" />
+            <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+        </form>
+
+        <script type="text/javascript">
+            function clearSearch() {
+                window.location = "[[@{/article/list}]]";
+            }
+        </script>
+
         <div class="card">
             <div class="card-body">
                 <div th:switch="${articles}" class="my-5">
                     <div class="col-md-10">
                         <h2 th:case="null">No articles yet!</h2>
                         <div th:case="*">
+
+
+
                             <table class="table table-striped table-responsive-md">
                                 <thead>
                                 <tr>

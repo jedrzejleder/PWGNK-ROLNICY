@@ -8,6 +8,7 @@ import net.javaguides.springboot.springsecurity.service.ArticleService;
 import net.javaguides.springboot.springsecurity.service.UserService;
 import net.javaguides.springboot.springsecurity.web.dto.ArticleRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -42,6 +43,8 @@ public class ArticleController {
         this.userRepository = userRepository;
     }
 
+
+
     @ModelAttribute("article")
     public ArticleRegistrationDto articleRegistrationDto() {
         return new ArticleRegistrationDto();
@@ -72,11 +75,21 @@ public class ArticleController {
         return "redirect:/article/list";
     }
 
-    @GetMapping("/list")
-    public String showUpdateForm(Model model) {
-        model.addAttribute("articles", articleRepository.findAllAvailable());
+    @RequestMapping("/list")
+    public String showUpdateForm(Model model, @Param("keyword") String keyword) {
+        List<Article> listProducts = articleService.listAll(keyword);
+        model.addAttribute("articles", listProducts);
+        model.addAttribute("keyword", keyword);
+
         return "listArticle";
     }
+
+
+//    @GetMapping("/list")
+//    public String showUpdateForm(Model model) {
+//        model.addAttribute("articles", articleRepository.findAllAvailable());
+//        return "listArticle";
+//    }
 
     @GetMapping("/{id}")
     public String showArticle(@PathVariable("id") long id, Model model) {

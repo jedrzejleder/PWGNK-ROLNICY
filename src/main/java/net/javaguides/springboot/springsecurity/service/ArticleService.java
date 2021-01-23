@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ArticleService {
 
@@ -30,4 +32,11 @@ public class ArticleService {
     }
 
     public Article updateArticle(Article article) {return articleRepository.save(article);}
+
+    public List<Article> listAll(String keyword) {
+        if (keyword != null) {
+            return articleRepository.search(keyword);
+        }
+        return articleRepository.findAllAvailable();
+    }
 }
