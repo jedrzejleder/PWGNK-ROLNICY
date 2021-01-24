@@ -15,11 +15,29 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
     @Query("select a from Article a where a.available = 1")
     List<Article> findAllAvailable();
 
+//    @Query("SELECT p FROM Article p WHERE p.name LIKE %?1%"
+//            + " AND p.available = 1 "
+//            + " OR p.placeOfTheObject LIKE %?1%"
+//            + " AND p.available = 1 "
+//            + " OR CONCAT(p.price, '') LIKE %?1%"
+//            + " AND p.available = 1 ")
+//    public List<Article> search(String keyword);
+
     @Query("SELECT p FROM Article p WHERE p.name LIKE %?1%"
-            + " AND p.available = 1 "
-            + " OR p.placeOfTheObject LIKE %?1%"
-            + " AND p.available = 1 "
-            + " OR CONCAT(p.price, '') LIKE %?1%"
             + " AND p.available = 1 ")
-    public List<Article> search(String keyword);
+    public List<Article> searchName(String keyword);
+
+    @Query("SELECT p FROM Article p WHERE p.placeOfTheObject LIKE %?1%"
+            + " AND p.available = 1 ")
+    public List<Article> searchPlace(String keyword);
+
+    @Query("SELECT p FROM Article p WHERE CONCAT(p.price, '') LIKE %?1%"
+            + " AND p.available = 1 ")
+    public List<Article> searchPrice(String keyword);
+
+
+
+
+
+
 }

@@ -62,6 +62,12 @@
 
         <form th:action="@{/article/list}">
             Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+            Szukaj po :
+            <select th:name = "searchKeyword">
+                <option value="Nazwa">Nazwie</option>
+                <option value="Lokalizacja">Lokalizacji</option>
+                <option value="Cena">Cenie</option>
+            </select>
             <input type="submit" value="Search" />
             <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
         </form>

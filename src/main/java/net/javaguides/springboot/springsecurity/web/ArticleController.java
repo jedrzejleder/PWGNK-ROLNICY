@@ -76,8 +76,8 @@ public class ArticleController {
     }
 
     @RequestMapping("/list")
-    public String showUpdateForm(Model model, @Param("keyword") String keyword) {
-        List<Article> listProducts = articleService.listAll(keyword);
+    public String showUpdateForm(Model model, @Param("keyword") String keyword, @RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
+        List<Article> listProducts = articleService.listAll(keyword, searchKeyword);
         model.addAttribute("articles", listProducts);
         model.addAttribute("keyword", keyword);
 
