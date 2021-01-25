@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>LendMe - wypożycz swój sprzęt</title>
 
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <script src="https://kit.fontawesome.com/b64830dbde.js" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -77,6 +77,27 @@
                 window.location = "[[@{/article/list}]]";
             }
         </script>
+
+
+        <a th:if="${currentPage > 1}"  th:href="@{'/article/list/1'}">First</a>
+        <span th:unless="${currentPage > 1}">First</span>
+
+        <a th:if="${currentPage > 1}" th:href="@{'/article/list/' + ${currentPage - 1}}">Previous</a>
+        <span th:unless="${currentPage > 1}">Previous</span>
+
+        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+        <a th:if="${currentPage != i}" th:href="@{'/article/list/' + ${i}}">[[${i}]]</a>
+        <span th:unless="${currentPage != i}">[[${i}]]</span>
+        &nbsp;
+        </span>
+
+        <a th:if="${currentPage < totalPages}" th:href="@{'/article/list/' + ${currentPage + 1}}">Next</a>
+        <span th:unless="${currentPage < totalPages}">Next</span>
+
+        <a th:if="${currentPage < totalPages}" th:href="@{'/article/list/' + ${totalPages}}">Last</a>
+        <span th:unless="${currentPage < totalPages}">Last</span>
+
+
 
         <div class="card">
             <div class="card-body">

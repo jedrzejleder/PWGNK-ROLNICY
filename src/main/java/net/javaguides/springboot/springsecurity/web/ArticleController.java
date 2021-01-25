@@ -8,6 +8,7 @@ import net.javaguides.springboot.springsecurity.service.ArticleService;
 import net.javaguides.springboot.springsecurity.service.UserService;
 import net.javaguides.springboot.springsecurity.web.dto.ArticleRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -76,20 +77,49 @@ public class ArticleController {
     }
 
     @RequestMapping("/list")
-    public String showUpdateForm(Model model, @Param("keyword") String keyword, @RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
-        List<Article> listProducts = articleService.listAll(keyword, searchKeyword);
+    public String showFirtsPage(Model model,
+                                @Param("keyword") String keyword,
+                                @RequestParam(value = "searchKeyword", required = false) String searchKeyword)
+    {
+        return showUpdateForm(model,keyword,  searchKeyword,  1);
+    }
+
+    @RequestMapping("/list/{pageNum}")
+    public String showUpdateForm(Model model,
+                                 @Param("keyword") String keyword,
+                                 @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+                                 @PathVariable(name = "pageNum") int pageNum)
+    {
+        Page<Article> page = articleService.listAll(keyword, searchKeyword, pageNum);
+        List<Article> listProducts = page.getContent();
+
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("articles", listProducts);
+//        model.addAttribute("listProducts", listProducts);
         model.addAttribute("keyword", keyword);
 
         return "listArticle";
     }
 
-
-//    @GetMapping("/list")
-//    public String showUpdateForm(Model model) {
-//        model.addAttribute("articles", articleRepository.findAllAvailable());
+//    @RequestMapping("/list/{pageNum}")
+//    public String showUpdateForm(Model model, String keyword, String searchKeyword, int pageNum)
+//    {
+//        Page<Article> page = articleService.listAll(keyword, searchKeyword, pageNum);
+//        List<Article> listProducts = page.getContent();
+//
+//        model.addAttribute("currentPage", pageNum);
+//        model.addAttribute("totalPages", page.getTotalPages());
+//        model.addAttribute("totalItems", page.getTotalElements());
+//        model.addAttribute("articles", listProducts);
+////        model.addAttribute("listProducts", listProducts);
+//        model.addAttribute("keyword", keyword);
+//
 //        return "listArticle";
 //    }
+
+
 
     @GetMapping("/{id}")
     public String showArticle(@PathVariable("id") long id, Model model) {

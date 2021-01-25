@@ -4,6 +4,10 @@ import net.javaguides.springboot.springsecurity.model.Article;
 import net.javaguides.springboot.springsecurity.repository.ArticleRepository;
 import net.javaguides.springboot.springsecurity.web.dto.ArticleRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,25 +35,38 @@ public class ArticleService {
 
     public Article updateArticle(Article article) {return articleRepository.save(article);}
 
-    public List<Article> listAll(String keyword, String searchKeyword) {
+
+
+    public Page<Article> listAll(String keyword, String searchKeyword, int pageNum) {
 
 //        System.out.printf(searchKeyword);
+
+        int pageSize = 1;
+
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+
 
         if (keyword != null) {
             if(searchKeyword.equals("Nazwa") )
             {
-                return articleRepository.searchName(keyword);
+                return articleRepository.searchName(keyword, pageable);
             }
             else if (searchKeyword.equals("Lokalizacja"))
             {
-                return articleRepository.searchPlace(keyword);
+                return articleRepository.searchPlace(keyword, pageable);
             }
             else if( searchKeyword.equals("Cena"))
             {
-                return articleRepository.searchPrice(keyword);
+                return articleRepository.searchPrice(keyword, pageable);
+            }
+            else
+            {
+                return articleRepository.findAllAvailable(pageable);
             }
         }
 
-        return articleRepository.findAllAvailable();
+        return articleRepository.findAllAvailable(pageable);
     }
+
+
 }
