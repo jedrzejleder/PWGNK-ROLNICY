@@ -1,6 +1,7 @@
 package net.javaguides.springboot.springsecurity.service;
 
 import net.javaguides.springboot.springsecurity.model.Article;
+import net.javaguides.springboot.springsecurity.model.Photos;
 import net.javaguides.springboot.springsecurity.repository.ArticleRepository;
 import net.javaguides.springboot.springsecurity.web.dto.ArticleRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class ArticleService {
         article.setAvailable(true);
         article.setUser_owner(userService.loadCurrentUser());
         article.setPhoto(registration.getPhoto());
+
 
         return articleRepository.save(article);
     }

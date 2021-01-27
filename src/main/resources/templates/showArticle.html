@@ -61,7 +61,9 @@
 
     <div class="content">
         <div class="container3">
-            <img class="form-control" th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/>
+            <tr th:each="photo : ${Photos}">
+                <img th:src="@{${'/article-photos/' + article.articleId + '/' + photo.name}}"/></a>
+            </tr>
             <h3>Opis</h3>
             <input class="form-control" type="text" th:field="${article.description}" readonly>
             <h3>Położenie</h3>

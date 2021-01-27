@@ -1,10 +1,13 @@
 package net.javaguides.springboot.springsecurity.web;
 
 import net.javaguides.springboot.springsecurity.model.Article;
+import net.javaguides.springboot.springsecurity.model.Photos;
 import net.javaguides.springboot.springsecurity.model.User;
 import net.javaguides.springboot.springsecurity.repository.ArticleRepository;
+import net.javaguides.springboot.springsecurity.repository.PhotosRepository;
 import net.javaguides.springboot.springsecurity.repository.UserRepository;
 import net.javaguides.springboot.springsecurity.service.ArticleService;
+import net.javaguides.springboot.springsecurity.service.PhotosService;
 import net.javaguides.springboot.springsecurity.service.UserService;
 import net.javaguides.springboot.springsecurity.web.dto.ArticleRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,7 @@ public class ArticleController {
 
     private final ArticleRepository articleRepository;
     private UserRepository userRepository;
+    private PhotosRepository photosRepository;
 
     @Autowired
     private ArticleService articleService;
@@ -37,9 +41,13 @@ public class ArticleController {
     private UserService userService;
 
     @Autowired
-    public ArticleController(ArticleRepository articleRepository, UserRepository userRepository) {
+    private PhotosService photosService;
+
+    @Autowired
+    public ArticleController(ArticleRepository articleRepository, UserRepository userRepository, PhotosRepository photosRepository) {
         this.articleRepository = articleRepository;
         this.userRepository = userRepository;
+        this.photosRepository = photosRepository;
     }
 
 
@@ -73,6 +81,7 @@ public class ArticleController {
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
                 if(fileNames.size()<10) {
                     try {
+                        photosService.save(savedArticle, fileName);
                         FileUploadUtil.saveFile(uploadDir, fileName, file);
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -80,7 +89,6 @@ public class ArticleController {
                     fileNames.add(file.getOriginalFilename());
                 }
             });
-
         } catch (Exception e) {
             message = "Nie udało się wysłać plików.";
         }
@@ -144,7 +152,7 @@ public class ArticleController {
 
         User user = userRepository.findById(article.getUser_owner_id())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));;
-
+        model.addAttribute("Photos", article.getPhotos());
         model.addAttribute(article);
         model.addAttribute(user);
         return "showArticle";
