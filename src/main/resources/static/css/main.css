@@ -78,6 +78,20 @@ body {
     margin-left: 15px;
 }
 
+.login-button-pro {
+    background: -webkit-linear-gradient(lime, black);
+    font-size: 20px;
+    color: whitesmoke;
+    margin: 1px;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    width: 120px;
+    transition: all 0.2s;
+    margin-left: 0px;
+}
+
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
