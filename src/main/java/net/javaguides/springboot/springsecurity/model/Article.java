@@ -3,10 +3,16 @@ package net.javaguides.springboot.springsecurity.model;
 
 import javax.persistence.*;
 import java.beans.Transient;
+import java.util.List;
 
 @Entity
 @Table(name="Article")
 public class Article {
+
+    @OneToMany(mappedBy = "article_id", cascade = {
+            CascadeType.ALL
+    })
+    private List<Photos> photos;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -129,5 +135,13 @@ public class Article {
     @Override
     public String toString(){
         return "Article [id= "+ articleId + " name= " + name + " placeOfTheObject= " + placeOfTheObject + " description= " + description + " price= " + price + " available= " + available + "photo= " + photo + " ]";
+    }
+
+    public List<Photos> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Photos> photos) {
+        this.photos = photos;
     }
 }
