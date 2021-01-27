@@ -61,15 +61,15 @@
     <div class="z-index-fix">
 
         <form th:action="@{/article/list}">
-            Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
-            Szukaj po :
-            <select th:name = "searchKeyword">
-                <option value="Nazwa">Nazwie</option>
-                <option value="Lokalizacja">Lokalizacji</option>
-                <option value="Cena">Cenie</option>
+            <input type="text" class = "input" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+            <select class="input" th:name = "searchKeyword">
+                <option value="empty"></option>
+                <option value="Nazwa">Nazwa</option>
+                <option value="Lokalizacja">Lokalizacja</option>
+                <option value="Cena">Cenia</option>
             </select>
-            <input type="submit" value="Search" />
-            <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" />
+            <input type="submit" class = "input" value="Szukaj" />
+            <input type="button" class= "input" value="Wyczyść" id="btnClear" onclick="clearSearch()" />
         </form>
 
         <script type="text/javascript">
@@ -79,13 +79,13 @@
         </script>
 
 
-        <a th:if="${currentPage > 1}"  th:href="@{'/article/list/1'}">First</a>
+        <a class="green-hover" style="color: whitesmoke" th:if="${currentPage > 1}"  th:href="@{'/article/list/1'}">First</a>
         <span th:unless="${currentPage > 1}">First</span>
 
         <a th:if="${currentPage > 1}" th:href="@{'/article/list/' + ${currentPage - 1}}">Previous</a>
         <span th:unless="${currentPage > 1}">Previous</span>
 
-        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+        <span class="green-hover" style="color: lime" th:each="i: ${#numbers.sequence(1, totalPages)}">
         <a th:if="${currentPage != i}" th:href="@{'/article/list/' + ${i}}">[[${i}]]</a>
         <span th:unless="${currentPage != i}">[[${i}]]</span>
         &nbsp;
@@ -94,7 +94,7 @@
         <a th:if="${currentPage < totalPages}" th:href="@{'/article/list/' + ${currentPage + 1}}">Next</a>
         <span th:unless="${currentPage < totalPages}">Next</span>
 
-        <a th:if="${currentPage < totalPages}" th:href="@{'/article/list/' + ${totalPages}}">Last</a>
+        <a class="green-hover" style="color: whitesmoke" th:if="${currentPage < totalPages}" th:href="@{'/article/list/' + ${totalPages}}">Last</a>
         <span th:unless="${currentPage < totalPages}">Last</span>
 
 
