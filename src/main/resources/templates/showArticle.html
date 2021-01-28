@@ -82,7 +82,7 @@
         <div class="articleContainer">
             <div class="left">
                 <img th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}" alt="">
-                <h2>Kosiarka spalinowa</h2>
+                <h2 th:text="${article.name}"></h2>
                 <h4>Imię wystawiającego</h4>
                 <p th:text="${user.firstName}"></p>
                 <h4>Lokalizacja</h4>

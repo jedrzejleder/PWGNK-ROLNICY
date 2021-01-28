@@ -106,33 +106,46 @@
                         <h2 th:case="null">No articles yet!</h2>
                         <div th:case="*">
 
+                            <div class="wrapper">
+                                <span th:each="article : ${articles}">
+                                    <a th:href="@{/article/{id}(id=${article.articleId})}">
+                                    <div class="card" style="width: 200px;">
+                                        <img class="card-img-top" th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}">
+                                        <div class="card-body">
+                                            <h4 class="card-title" th:text="${article.name}"></h4>
+                                            <p class="card-text" th:text="${article.price}"></p>
+                                            <p class="text-muted" th:text="${article.placeOfTheObject}"></p>
+                                        </div>
+                                    </div>
+                                </a>
+                                </span>
+                            </div>
 
-
-                            <table class="table table-striped table-responsive-md">
-                                <thead>
-                                <tr>
-                                    <th>Zdjęcie</th>
-                                    <th>Nazwa</th>
-                                    <th>Lokalizacja</th>
-<!--                                    <th>Opis</th>-->
-                                    <th>Cena</th>
-                                    <th>Szczegóły</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="article : ${articles}">
-                                    <td>
-                                        <img th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/></a>
-                                    </td>
-                                    <td th:text="${article.name}"></td>
-                                    <td th:text="${article.placeOfTheObject}"></td>
-<!--                                    <td th:text="${article.description}"></td>-->
-                                    <td th:text="${article.price}"></td>
-                                    <td><a th:href="@{/article/{id}(id=${article.articleId})}" class="btn btn-primary"><i
-                                            class="fas fa-user-edit ml-2"></i></a></td>
-                                </tr>
-                                </tbody>
-                            </table>
+<!--                            <table class="table table-striped table-responsive-md">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Zdjęcie</th>-->
+<!--                                    <th>Nazwa</th>-->
+<!--                                    <th>Lokalizacja</th>-->
+<!--&lt;!&ndash;                                    <th>Opis</th>&ndash;&gt;-->
+<!--                                    <th>Cena</th>-->
+<!--                                    <th>Szczegóły</th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+<!--                                <tr th:each="article : ${articles}">-->
+<!--                                    <td>-->
+<!--                                        <img th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/></a>-->
+<!--                                    </td>-->
+<!--                                    <td th:text="${article.name}"></td>-->
+<!--                                    <td th:text="${article.placeOfTheObject}"></td>-->
+<!--&lt;!&ndash;                                    <td th:text="${article.description}"></td>&ndash;&gt;-->
+<!--                                    <td th:text="${article.price}"></td>-->
+<!--                                    <td><a th:href="@{/article/{id}(id=${article.articleId})}" class="btn btn-primary"><i-->
+<!--                                            class="fas fa-user-edit ml-2"></i></a></td>-->
+<!--                                </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
                         </div>
 
                     </div>

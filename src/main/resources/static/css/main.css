@@ -616,4 +616,33 @@ td img{
     display: inline-block;
 }
 
+.wrapper {
+    position: absolute;
+    top: 250px;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    width: 1200px;
+    height: 650px;
+    text-align: center;
+}
+
+.wrapper .card {
+    color: black;
+    display: inline-block;
+    text-align: center;
+    background-color: whitesmoke;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: 5px 0;
+    font-size: 16px;
+}
+.wrapper .card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
 /* Tutaj zaczyna się wyglad tabelek i buttona do addArticle */
