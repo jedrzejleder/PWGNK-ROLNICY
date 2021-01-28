@@ -28,14 +28,14 @@
 
         <div class="header-btn">
             <div class="btn">
-                <a  class="btn" th:href="@{/}">Strona główna</a>
+                <a class="btn" th:href="@{/}">Strona główna</a>
             </div>
             <div class="btn">
-                <a  class="btn" th:href="@{/article/list}"> Oferty </a>
+                <a class="btn" th:href="@{/article/list}"> Oferty </a>
             </div>
-            <div class="btn" style="color: lime" >
+            <div class="btn" style="color: lime">
                 <div class="dropdown">
-                    <div class = "dropbtn">Twoje Konto</div>
+                    <div class="dropbtn">Twoje Konto</div>
                     <div class="dropdown-content">
                         <a th:href="@{/profil/display}">Profil</a>
                         <a th:href="@{/article/listMy}">Twoje Ogłoszenia</a>
@@ -47,38 +47,45 @@
         </div>
     </div>
     <div class="content">
-<div class="addArticle-div">
+        <div class="addArticle-div">
 
-    <form th:action="@{/article/add}" th:object="${article}" method="post" enctype="multipart/form-data">
+            <form th:action="@{/article/add}" th:object="${article}" method="post" enctype="multipart/form-data">
 
 
-        <div class="">
-            <input id="name" class="input" th:field="*{name}" placeholder="Nazwa"/>
+                <div class="">
+                    <input id="name" class="input" th:field="*{name}" placeholder="Nazwa"/>
+                </div>
+                <div class="">
+                    <input id="placeOfTheObject" class="input" th:field="*{placeOfTheObject}"
+                           placeholder="Gdzie jest przedmiot"/>
+                </div>
+                <div class="">
+                    <input id="description" class="input" th:field="*{description}" placeholder="Opis"/>
+                </div>
+
+                <div class="">
+                    <input id="price" class="input" th:field="*{price}"
+                           placeholder="Cena"/>
+                </div>
+
+                <div class="adding" style="display: flex; align-items: center; justify-content: center;">
+                    <div style="margin-right: 5px">
+                        <label style="color: white" for="files"> Zdjęcie: </label>
+                    </div>
+
+                    <div style="max-width: 220px">
+                        <input id="files" class="adding" type="file" name="files" accept="image/png, image/jpeg"
+                               multiple style="outline: none"/>
+                    </div>
+                </div>
+
+                <div class="register-btn">
+                    <button type="submit" class="login-button">Dodaj Ogłoszenie!</button>
+                </div>
+            </form>
+
         </div>
-        <div class="">
-            <input id="placeOfTheObject" class="input" th:field="*{placeOfTheObject}" placeholder="Gdzie jest przedmiot"/>
-        </div>
-        <div class="">
-            <input id="description" class="input" th:field="*{description}" placeholder="Opis"/>
-        </div>
-
-        <div class="">
-            <input id="price" class="input" th:field="*{price}"
-                   placeholder="Cena"/>
-        </div>
-
-        <div class="adding">
-            <label> Zdjęcie: </label>
-            <input id="files" class="adding" type="file" name="files" accept="image/png, image/jpeg" multiple/>
-        </div>
-
-        <div class="register-btn">
-            <button type="submit" class="login-button">Dodaj Ogłoszenie!</button>
-        </div>
-    </form>
-
-</div>
-</div>
+    </div>
 </div>
 <script type="text/javascript"
         th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
