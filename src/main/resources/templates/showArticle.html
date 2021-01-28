@@ -66,14 +66,14 @@
             </tr>
             <h3>Imię sprzedającego</h3>
             <input class="form-control" type="text" th:field="${user.firstName}">
-            <h3>Opis</h3>
-            <input class="form-control" type="text" th:field="${article.description}" readonly>
             <h3>Położenie</h3>
             <input class="form-control" type="text" th:field="${article.placeOfTheObject}" readonly>
             <h3>Cena</h3>
             <input class="form-control" type="text" th:field="${article.price}" readonly>
             <h3>Tel właściciela</h3>
             <input class="form-control" type="text" th:field="${user.phone}" readonly>
+            <h3>Opis</h3>
+            <input class="form-control description" type="text" th:field="${article.description}" readonly>
     </div>
 
 </div>
