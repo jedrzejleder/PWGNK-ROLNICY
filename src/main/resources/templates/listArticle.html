@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>LendMe - wypożycz swój sprzęt</title>
 
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <script src="https://kit.fontawesome.com/b64830dbde.js" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -56,22 +56,67 @@
             </div>
         </div>
     </div>
+
+
     <div class="z-index-fix">
+
+        <form th:action="@{/article/list}">
+            <input type="text" class = "input" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+            <select class="input" th:name = "searchKeyword">
+                <option value="empty"></option>
+                <option value="Nazwa">Nazwa</option>
+                <option value="Lokalizacja">Lokalizacja</option>
+                <option value="Cena">Cenia</option>
+            </select>
+            <input type="submit" class = "login-button-pro" value="Szukaj" />
+            <input type="button" class= "login-button-pro" value="Wyczyść" id="btnClear" onclick="clearSearch()" />
+        </form>
+
+        <script type="text/javascript">
+            function clearSearch() {
+                window.location = "[[@{/article/list}]]";
+            }
+        </script>
+
+
+        <a class="green-hover" style="color: whitesmoke" th:if="${currentPage > 1}"  th:href="@{'/article/list/1'}">First</a>
+        <span th:unless="${currentPage > 1}">First</span>
+
+        <a th:if="${currentPage > 1}" th:href="@{'/article/list/' + ${currentPage - 1}}">Previous</a>
+        <span th:unless="${currentPage > 1}">Previous</span>
+
+        <span class="green-hover" style="color: lime" th:each="i: ${#numbers.sequence(1, totalPages)}">
+        <a th:if="${currentPage != i}" th:href="@{'/article/list/' + ${i}}">[[${i}]]</a>
+        <span th:unless="${currentPage != i}">[[${i}]]</span>
+        &nbsp;
+        </span>
+
+        <a th:if="${currentPage < totalPages}" th:href="@{'/article/list/' + ${currentPage + 1}}">Next</a>
+        <span th:unless="${currentPage < totalPages}">Next</span>
+
+        <a class="green-hover" style="color: whitesmoke" th:if="${currentPage < totalPages}" th:href="@{'/article/list/' + ${totalPages}}">Last</a>
+        <span th:unless="${currentPage < totalPages}">Last</span>
+
+
+
         <div class="card">
             <div class="card-body">
                 <div th:switch="${articles}" class="my-5">
                     <div class="col-md-10">
                         <h2 th:case="null">No articles yet!</h2>
                         <div th:case="*">
+
+
+
                             <table class="table table-striped table-responsive-md">
                                 <thead>
                                 <tr>
                                     <th>Zdjęcie</th>
                                     <th>Nazwa</th>
                                     <th>Lokalizacja</th>
-                                    <th>Opis</th>
+<!--                                    <th>Opis</th>-->
                                     <th>Cena</th>
-                                    <th>Dostępność</th>
+                                    <th>Szczegóły</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -81,7 +126,7 @@
                                     </td>
                                     <td th:text="${article.name}"></td>
                                     <td th:text="${article.placeOfTheObject}"></td>
-                                    <td th:text="${article.description}"></td>
+<!--                                    <td th:text="${article.description}"></td>-->
                                     <td th:text="${article.price}"></td>
                                     <td><a th:href="@{/article/{id}(id=${article.articleId})}" class="btn btn-primary"><i
                                             class="fas fa-user-edit ml-2"></i></a></td>

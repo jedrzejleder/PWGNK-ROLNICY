@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>LendMe - wypożycz swój sprzęt</title>
 
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="/css/main.css">
     <script src="https://kit.fontawesome.com/b64830dbde.js" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -69,9 +69,9 @@
                                     <th>Zdjęcie</th>
                                     <th>Nazwa</th>
                                     <th>Lokalizacja</th>
-                                    <th>Opis</th>
+<!--                                    <th>Opis</th>-->
                                     <th>Cena</th>
-                                    <th>Dostępność</th>
+                                    <th>Zmień dostępność</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -81,9 +81,8 @@
                                     </td>
                                     <td th:text="${article.name}"></td>
                                     <td th:text="${article.placeOfTheObject}"></td>
-                                    <td th:text="${article.description}"></td>
+<!--                                    <td th:text="${article.description}"></td>-->
                                     <td th:text="${article.price}"></td>
-                                    //Tu musi być zmienianie dostępności produktu
                                     <td><a th:href="@{/article/listMy/{id}(id=${article.articleId})}" class="btn btn-primary"><i
                                             class="fas fa-user-edit ml-2"></i></a></td>
                                 </tr>
