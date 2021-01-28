@@ -10,6 +10,7 @@
 
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/profilUser.css">
+    <link rel="stylesheet" href="/css/lightbox.css">
     <script src="https://kit.fontawesome.com/b64830dbde.js" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -29,6 +30,7 @@
                 <span class="lisc">Me</span>
             </a>
         </div>
+
 
 
         <div class="header-btn">
@@ -59,23 +61,52 @@
     </div>
 
 
-    <div class="content">
-        <div class="container3">
-            <tr th:each="photo : ${Photos}">
-                <img th:src="@{${'/article-photos/' + article.articleId + '/' + photo.name}}"/></a>
-            </tr>
-            <h3>Imię sprzedającego</h3>
-            <input class="form-control" type="text" th:field="${user.firstName}">
-            <h3>Położenie</h3>
-            <input class="form-control" type="text" th:field="${article.placeOfTheObject}" readonly>
-            <h3>Cena</h3>
-            <input class="form-control" type="text" th:field="${article.price}" readonly>
-            <h3>Tel właściciela</h3>
-            <input class="form-control" type="text" th:field="${user.phone}" readonly>
-            <h3>Opis</h3>
-            <input class="form-control description" type="text" th:field="${article.description}" readonly>
-    </div>
+
+<!--    <div class="content">-->
+<!--        <div class="container3">-->
+<!--            <tr th:each="photo : ${Photos}">-->
+<!--                <img th:src="@{${'/article-photos/' + article.articleId + '/' + photo.name}}"/></a>-->
+<!--            </tr>-->
+<!--            <h3>Imię sprzedającego</h3>-->
+<!--            <input class="form-control" type="text" th:field="${user.firstName}">-->
+<!--            <h3>Położenie</h3>-->
+<!--            <input class="form-control" type="text" th:field="${article.placeOfTheObject}" readonly>-->
+<!--            <h3>Cena</h3>-->
+<!--            <input class="form-control" type="text" th:field="${article.price}" readonly>-->
+<!--            <h3>Tel właściciela</h3>-->
+<!--            <input class="form-control" type="text" th:field="${user.phone}" readonly>-->
+<!--            <h3>Opis</h3>-->
+<!--            <input class="form-control description" type="text" th:field="${article.description}" readonly>-->
+<!--    </div>-->
+
+        <div class="articleContainer">
+            <div class="left">
+                <img th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}" alt="">
+                <h2>Kosiarka spalinowa</h2>
+                <h4>Imię wystawiającego</h4>
+                <p th:text="${user.firstName}"></p>
+                <h4>Lokalizacja</h4>
+                <p th:text="${article.placeOfTheObject}"></p>
+                <h4>Cena</h4>
+                <p th:text="${article.price}"></p>
+                <h4>Numer telefonu</h4>
+                <p th:text="${user.phone}"></p>
+            </div>
+            <div class="bar"></div>
+            <div class="right">
+                <h4>Opis</h4>
+                <p th:text="${article.description}"></p>
+                <h4>Zdjęcia</h4>
+                <span th:each="photo : ${Photos}">
+                    <a th:href="@{${'/article-photos/' + article.articleId + '/' + photo.name}}" data-lightbox="roadtrip"><img th:src="@{${'/article-photos/' + article.articleId + '/' + photo.name}}"></a>
+                </span>
+            </div>
+        </div>
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.0/js/lightbox.js"></script>
+<!--    <script src="js/lightbox.min.js"></script>-->
 </body>
 </html>

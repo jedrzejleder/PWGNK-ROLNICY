@@ -17,7 +17,7 @@ body {
 
 .container2
 {
-    position: absolute;
+    position: relative;
     min-height: 100vh;
     background-size: cover;
     background: url("./images/poleL.jpg");
@@ -536,6 +536,84 @@ td img{
 .description {
     height: 300px;
     word-wrap: break-word;
+}
+
+/*nowe wyswietlanie artykulu*/
+
+.articleContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    height: 700px;
+    background-color: rgba(40, 40, 40, 0.9);
+    border-radius: 10px;
+    color: whitesmoke;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.articleContainer h2, .articleContainer h4 {
+    font-weight: bold;
+}
+
+.articleContainer .left {
+    position: absolute;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 650px;
+    width: 350px;
+    margin-left: 25px;
+}
+
+.articleContainer .left h2 {
+    margin: 20px 0;
+    color: lime;
+    word-wrap: break-word;
+}
+
+.articleContainer .left img {
+    width: 200px;
+    height: 200px;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.articleContainer .bar {
+    position: absolute;
+    left: 380px;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 650px;
+    width: 2px;
+    background-color: grey;
+}
+
+.articleContainer .right {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    height: 650px;
+    width: 788px;
+    margin-right: 25px;
+}
+
+.articleContainer .right img {
+    width: 100px;
+    height: 100px;
+    -o-object-fit: cover;
+    object-fit: cover;
+    margin: 20px;
+}
+
+.articleContainer .right a {
+    display: inline-block;
 }
 
 /* Tutaj zaczyna się wyglad tabelek i buttona do addArticle */
