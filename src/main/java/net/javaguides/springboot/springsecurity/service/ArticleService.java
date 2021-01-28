@@ -43,7 +43,7 @@ public class ArticleService {
 
 //        System.out.printf(searchKeyword);
 
-        int pageSize = 5;
+        int pageSize = 10;
 
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
 
