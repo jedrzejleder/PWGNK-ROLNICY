@@ -51,7 +51,6 @@ public class ArticleController {
     }
 
 
-
     @ModelAttribute("article")
     public ArticleRegistrationDto articleRegistrationDto() {
         return new ArticleRegistrationDto();
@@ -79,7 +78,7 @@ public class ArticleController {
             List<String> fileNames = new ArrayList<>();
             Arrays.asList(files).stream().forEach(file -> {
                 String fileName = StringUtils.cleanPath(file.getOriginalFilename());
-                if(fileNames.size()<10) {
+                if (fileNames.size() < 10) {
                     try {
                         photosService.save(savedArticle, fileName);
                         FileUploadUtil.saveFile(uploadDir, fileName, file);
@@ -103,17 +102,15 @@ public class ArticleController {
     @RequestMapping("/list")
     public String showFirtsPage(Model model,
                                 @Param("keyword") String keyword,
-                                @RequestParam(value = "searchKeyword", required = false) String searchKeyword)
-    {
-        return showUpdateForm(model,keyword,  searchKeyword,  1);
+                                @RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
+        return showUpdateForm(model, keyword, searchKeyword, 1);
     }
 
     @RequestMapping("/list/{pageNum}")
     public String showUpdateForm(Model model,
                                  @Param("keyword") String keyword,
                                  @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
-                                 @PathVariable(name = "pageNum") int pageNum)
-    {
+                                 @PathVariable(name = "pageNum") int pageNum) {
         Page<Article> page = articleService.listAll(keyword, searchKeyword, pageNum);
         List<Article> listProducts = page.getContent();
 
@@ -144,14 +141,14 @@ public class ArticleController {
 //    }
 
 
-
     @GetMapping("/{id}")
     public String showArticle(@PathVariable("id") long id, Model model) {
         Article article = articleRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
 
         User user = userRepository.findById(article.getUser_owner_id())
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));;
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        ;
         model.addAttribute("Photos", article.getPhotos());
         model.addAttribute(article);
         model.addAttribute(user);
@@ -178,4 +175,24 @@ public class ArticleController {
         return "redirect:/article/listMy";
     }
 
+    @GetMapping("/editArticle/{id}")
+    public String editArticleGet(@PathVariable("id") long id, Model model) {
+        Article article = articleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
+        model.addAttribute("article", article);
+        return "editArticle";
+    }
+
+    @PostMapping("/editArticle/{id}")
+    public String editArticlePost(@PathVariable("id") long id, @ModelAttribute("article") Article article, Model model) {
+        Article thisArticle = articleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
+        model.addAttribute(article);
+        thisArticle.setName(article.getName());
+        thisArticle.setPlaceOfTheObject(article.getPlaceOfTheObject());
+        thisArticle.setDescription(article.getDescription());
+        thisArticle.setPrice(article.getPrice());
+        articleService.updateArticle(thisArticle);
+        return "redirect:/article/listMy";
+    }
 }

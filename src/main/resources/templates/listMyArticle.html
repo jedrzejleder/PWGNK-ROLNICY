@@ -72,6 +72,7 @@
 <!--                                    <th>Opis</th>-->
                                     <th>Cena</th>
                                     <th>Zmień dostępność</th>
+                                    <th>Edytuj</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -84,6 +85,8 @@
 <!--                                    <td th:text="${article.description}"></td>-->
                                     <td th:text="${article.price}"></td>
                                     <td><a th:href="@{/article/listMy/{id}(id=${article.articleId})}" class="btn btn-primary"><i
+                                            class="fas fa-user-edit ml-2"></i></a></td>
+                                    <td><a th:href="@{/article/editArticle/{id}(id=${article.articleId})}" class="btn btn-primary"><i
                                             class="fas fa-user-edit ml-2"></i></a></td>
                                 </tr>
                                 </tbody>
