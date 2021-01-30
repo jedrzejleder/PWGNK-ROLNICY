@@ -70,5 +70,36 @@ public class ArticleService {
         return articleRepository.findAllAvailable(pageable);
     }
 
+    public Page<Article> listAllMy(String keyword, String searchKeyword, int pageNum, Long myUserId) {
+
+//        System.out.printf(searchKeyword);
+
+        int pageSize = 10;
+
+        Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
+
+        if (keyword != null) {
+            if(searchKeyword.equals("Nazwa") )
+            {
+                return articleRepository.searchNameMy(keyword,myUserId, pageable);
+            }
+            else if (searchKeyword.equals("Lokalizacja"))
+            {
+                return articleRepository.searchPlaceMy(keyword,myUserId, pageable);
+            }
+            else if( searchKeyword.equals("Cena"))
+            {
+                return articleRepository.searchPriceMy(keyword,myUserId, pageable);
+            }
+            else
+            {
+                return articleRepository.findAllAvailableMy(myUserId,pageable);
+            }
+        }
+
+
+        return articleRepository.findAllAvailableMy(myUserId, pageable );
+    }
+
 
 }

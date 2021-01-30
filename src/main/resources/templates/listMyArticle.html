@@ -57,6 +57,47 @@
         </div>
     </div>
     <div class="z-index-fix">
+        <form th:action="@{/article/listMy}">
+            <input type="text" class = "input" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+            <select class="input" th:name = "searchKeyword">
+                <option value="empty"></option>
+                <option value="Nazwa">Nazwa</option>
+                <option value="Lokalizacja">Lokalizacja</option>
+                <option value="Cena">Cenia</option>
+            </select>
+            <input type="submit" class = "login-button-pro" value="Szukaj" />
+            <input type="button" class= "login-button-pro" value="Wyczyść" id="btnClear" onclick="clearSearch()" />
+        </form>
+
+        <script type="text/javascript">
+            function clearSearch() {
+                window.location = "[[@{/article/listMy}]]";
+            }
+        </script>
+
+
+
+        <a class="green-hover" style="color: whitesmoke" th:if="${currentPage > 1}"  th:href="@{'/article/listMy/1'}">First</a>
+        <span th:unless="${currentPage > 1}">First</span>
+
+        <a th:if="${currentPage > 1}" th:href="@{'/article/listMy/' + ${currentPage - 1}}">Previous</a>
+        <span th:unless="${currentPage > 1}">Previous</span>
+
+        <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+            <a th:if="${currentPage != i}" th:href="@{'/article/listMy/' + ${i}}">[[${i}]]</a>
+            <span th:unless="${currentPage != i}">[[${i}]]</span>
+            &nbsp;
+        </span>
+
+        <a th:if="${currentPage < totalPages}" th:href="@{'/article/listMy/' + ${currentPage + 1}}">Next</a>
+        <span th:unless="${currentPage < totalPages}">Next</span>
+
+        <a class="green-hover" style="color: whitesmoke" th:if="${currentPage < totalPages}" th:href="@{'/article/listMy/' + ${totalPages}}">Last</a>
+        <span th:unless="${currentPage < totalPages}">Last</span>
+
+
+
+
         <div class="card">
             <div class="card-body">
                 <div th:switch="${myArticles}" class="my-5">
@@ -71,7 +112,6 @@
                                     <th>Lokalizacja</th>
 <!--                                    <th>Opis</th>-->
                                     <th>Cena</th>
-                                    <th>Zmień dostępność</th>
                                     <th>Edytuj</th>
                                 </tr>
                                 </thead>
@@ -82,25 +122,22 @@
                                     </td>
                                     <td th:text="${article.name}"></td>
                                     <td th:text="${article.placeOfTheObject}"></td>
-<!--                                    <td th:text="${article.description}"></td>-->
                                     <td th:text="${article.price}"></td>
-                                    <td><a th:href="@{/article/listMy/{id}(id=${article.articleId})}" class="btn btn-primary"><i
-                                            class="fas fa-user-edit ml-2"></i></a></td>
                                     <td><a th:href="@{/article/editArticle/{id}(id=${article.articleId})}" class="btn btn-primary"><i
                                             class="fas fa-user-edit ml-2"></i></a></td>
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
 
+
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
-
 
 </body>
 </html>

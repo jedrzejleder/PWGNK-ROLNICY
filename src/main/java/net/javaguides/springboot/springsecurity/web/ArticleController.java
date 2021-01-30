@@ -124,22 +124,6 @@ public class ArticleController {
         return "listArticle";
     }
 
-//    @RequestMapping("/list/{pageNum}")
-//    public String showUpdateForm(Model model, String keyword, String searchKeyword, int pageNum)
-//    {
-//        Page<Article> page = articleService.listAll(keyword, searchKeyword, pageNum);
-//        List<Article> listProducts = page.getContent();
-//
-//        model.addAttribute("currentPage", pageNum);
-//        model.addAttribute("totalPages", page.getTotalPages());
-//        model.addAttribute("totalItems", page.getTotalElements());
-//        model.addAttribute("articles", listProducts);
-////        model.addAttribute("listProducts", listProducts);
-//        model.addAttribute("keyword", keyword);
-//
-//        return "listArticle";
-//    }
-
 
     @GetMapping("/{id}")
     public String showArticle(@PathVariable("id") long id, Model model) {
@@ -155,24 +139,39 @@ public class ArticleController {
         return "showArticle";
     }
 
-    @GetMapping("/listMy")
-    public String showMyArticles(Model model) {
-        User currUser = userService.loadCurrentUser();
-        model.addAttribute("myArticles", currUser.getArticles());
-        return "listMyArticle";
+    @RequestMapping("/listMy")
+    public String showMyArticles(Model model,
+                                 @Param("keyword") String keyword,
+                                 @RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
+        return changeAvailability(model, keyword, searchKeyword, 1);
+
+
+//        User currUser = userService.loadCurrentUser();
+//        model.addAttribute("myArticles", currUser.getArticles());
+//        return "listMyArticle";
     }
 
-    @GetMapping("/listMy/{id}")
-    public String changeAvailability(@PathVariable("id") long id, Model model) {
-        User currUser = userService.loadCurrentUser();
-        model.addAttribute("myArticles", currUser.getArticles());
+    @RequestMapping("/listMy/{pageNum}")
+    public String changeAvailability(Model model,
+                @Param("keyword") String keyword,
+                @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+                @PathVariable(name = "pageNum") int pageNum) {
 
-        Article article = articleRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
+        Long MyUserId = userService.loadCurrentUser().getUserId();
+        Page<Article> pageMy = articleService.listAllMy(keyword, searchKeyword, pageNum,  MyUserId);
+        List<Article> listProducts = pageMy.getContent();
 
-        article.setAvailable(!article.getAvailable());
-        articleService.updateArticle(article);
-        return "redirect:/article/listMy";
+
+
+        model.addAttribute("myArticles", listProducts);
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", pageMy.getTotalPages());
+        model.addAttribute("totalItems", pageMy.getTotalElements());
+        model.addAttribute("keyword", keyword);
+
+
+        return "listMyArticle";
+
     }
 
     @GetMapping("/editArticle/{id}")
