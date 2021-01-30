@@ -2,6 +2,7 @@ package net.javaguides.springboot.springsecurity.service;
 
 import net.javaguides.springboot.springsecurity.model.Article;
 import net.javaguides.springboot.springsecurity.model.Photos;
+import net.javaguides.springboot.springsecurity.model.User;
 import net.javaguides.springboot.springsecurity.repository.ArticleRepository;
 import net.javaguides.springboot.springsecurity.web.dto.ArticleRegistrationDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -40,9 +42,6 @@ public class ArticleService {
 
 
     public Page<Article> listAll(String keyword, String searchKeyword, int pageNum) {
-
-//        System.out.printf(searchKeyword);
-
         int pageSize = 10;
 
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
@@ -71,10 +70,7 @@ public class ArticleService {
     }
 
     public Page<Article> listAllMy(String keyword, String searchKeyword, int pageNum, Long myUserId) {
-
-//        System.out.printf(searchKeyword);
-
-        int pageSize = 10;
+        int pageSize = 2;
 
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
 
@@ -99,6 +95,11 @@ public class ArticleService {
 
 
         return articleRepository.findAllAvailableMy(myUserId, pageable );
+    }
+
+    @Transactional
+    public void deleteArticle(Long id ) {
+        articleRepository.deleteUsersByFirstName(id);
     }
 
 

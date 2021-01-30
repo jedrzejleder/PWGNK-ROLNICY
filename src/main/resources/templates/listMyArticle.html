@@ -113,6 +113,7 @@
 <!--                                    <th>Opis</th>-->
                                     <th>Cena</th>
                                     <th>Edytuj</th>
+                                    <th>Usuń</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -124,6 +125,8 @@
                                     <td th:text="${article.placeOfTheObject}"></td>
                                     <td th:text="${article.price}"></td>
                                     <td><a th:href="@{/article/editArticle/{id}(id=${article.articleId})}" class="btn btn-primary"><i
+                                            class="fas fa-user-edit ml-2"></i></a></td>
+                                    <td><a th:href="@{/article/deleteArticle/{id}(id=${article.articleId})}" class="btn btn-primary"><i
                                             class="fas fa-user-edit ml-2"></i></a></td>
                                 </tr>
                                 </tbody>

@@ -118,7 +118,6 @@ public class ArticleController {
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("articles", listProducts);
-//        model.addAttribute("listProducts", listProducts);
         model.addAttribute("keyword", keyword);
 
         return "listArticle";
@@ -144,11 +143,6 @@ public class ArticleController {
                                  @Param("keyword") String keyword,
                                  @RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
         return changeAvailability(model, keyword, searchKeyword, 1);
-
-
-//        User currUser = userService.loadCurrentUser();
-//        model.addAttribute("myArticles", currUser.getArticles());
-//        return "listMyArticle";
     }
 
     @RequestMapping("/listMy/{pageNum}")
@@ -161,8 +155,6 @@ public class ArticleController {
         Page<Article> pageMy = articleService.listAllMy(keyword, searchKeyword, pageNum,  MyUserId);
         List<Article> listProducts = pageMy.getContent();
 
-
-
         model.addAttribute("myArticles", listProducts);
         model.addAttribute("currentPage", pageNum);
         model.addAttribute("totalPages", pageMy.getTotalPages());
@@ -171,7 +163,6 @@ public class ArticleController {
 
 
         return "listMyArticle";
-
     }
 
     @GetMapping("/editArticle/{id}")
@@ -192,6 +183,13 @@ public class ArticleController {
         thisArticle.setDescription(article.getDescription());
         thisArticle.setPrice(article.getPrice());
         articleService.updateArticle(thisArticle);
+        return "redirect:/article/listMy";
+    }
+
+    @RequestMapping("/deleteArticle/{id}")
+    public String deleteProduct(@PathVariable(name = "id") int id) {
+        long l = id;
+        articleService.deleteArticle(l);
         return "redirect:/article/listMy";
     }
 }
