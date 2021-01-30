@@ -176,23 +176,28 @@ public class ArticleController {
     }
 
     @GetMapping("/editArticle/{id}")
-    public String editArticleGet(@PathVariable("id") long id, Model model) {
+    public String showEditArticleForm(@PathVariable("id") long id, Model model) {
         Article article = articleRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
         model.addAttribute("article", article);
         return "editArticle";
     }
 
-    @PostMapping("/editArticle/{id}")
-    public String editArticlePost(@PathVariable("id") long id, @ModelAttribute("article") Article article, Model model) {
-        Article thisArticle = articleRepository.findById(id)
+    @PostMapping("/updateArticle/{id}")
+    public String editArticlePost(@PathVariable("id") long id, @ModelAttribute("article") @Valid Article article, Model model) {
+        articleService.updateArticle(article);
+        User currUser = userService.loadCurrentUser();
+        model.addAttribute("myArticles", currUser.getArticles());
+        return "listMyArticle";
+    }
+
+    @GetMapping("deleteArticle/{id}")
+    public String deleteArticle(@PathVariable("id") long id, Model model) {
+        Article article = articleRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
-        model.addAttribute(article);
-        thisArticle.setName(article.getName());
-        thisArticle.setPlaceOfTheObject(article.getPlaceOfTheObject());
-        thisArticle.setDescription(article.getDescription());
-        thisArticle.setPrice(article.getPrice());
-        articleService.updateArticle(thisArticle);
-        return "redirect:/article/listMy";
+        articleService.delete(article);
+        User currUser = userService.loadCurrentUser();
+        model.addAttribute("myArticles", currUser.getArticles());
+        return "listMyArticle";
     }
 }

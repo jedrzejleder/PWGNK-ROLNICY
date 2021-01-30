@@ -60,7 +60,7 @@
     <div class="content">
         <div class="profilUser-div">
 
-            <form th:action="@{/article/editArticle/}+${id}" th:object="${article}" method="post">
+            <form th:action="@{/article/updateArticle/{id}(id=${article.articleId})}" th:object="${article}" method="post">
                 <div class="form-editData">
 
                     <h2>Zmień dane artykułu</h2>
