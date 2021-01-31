@@ -118,27 +118,10 @@ public class ArticleController {
         model.addAttribute("totalPages", page.getTotalPages());
         model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("articles", listProducts);
-//        model.addAttribute("listProducts", listProducts);
         model.addAttribute("keyword", keyword);
 
         return "listArticle";
     }
-
-//    @RequestMapping("/list/{pageNum}")
-//    public String showUpdateForm(Model model, String keyword, String searchKeyword, int pageNum)
-//    {
-//        Page<Article> page = articleService.listAll(keyword, searchKeyword, pageNum);
-//        List<Article> listProducts = page.getContent();
-//
-//        model.addAttribute("currentPage", pageNum);
-//        model.addAttribute("totalPages", page.getTotalPages());
-//        model.addAttribute("totalItems", page.getTotalElements());
-//        model.addAttribute("articles", listProducts);
-////        model.addAttribute("listProducts", listProducts);
-//        model.addAttribute("keyword", keyword);
-//
-//        return "listArticle";
-//    }
 
 
     @GetMapping("/{id}")
@@ -155,15 +138,35 @@ public class ArticleController {
         return "showArticle";
     }
 
-    @GetMapping("/listMy")
-    public String showMyArticles(Model model) {
-        User currUser = userService.loadCurrentUser();
-        model.addAttribute("myArticles", currUser.getArticles());
+    @RequestMapping("/listMy")
+    public String showMyArticles(Model model,
+                                 @Param("keyword") String keyword,
+                                 @RequestParam(value = "searchKeyword", required = false) String searchKeyword) {
+        return changeAvailability(model, keyword, searchKeyword, 1);
+    }
+
+    @RequestMapping("/listMy/{pageNum}")
+    public String changeAvailability(Model model,
+                @Param("keyword") String keyword,
+                @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+                @PathVariable(name = "pageNum") int pageNum) {
+
+        Long MyUserId = userService.loadCurrentUser().getUserId();
+        Page<Article> pageMy = articleService.listAllMy(keyword, searchKeyword, pageNum,  MyUserId);
+        List<Article> listProducts = pageMy.getContent();
+
+        model.addAttribute("myArticles", listProducts);
+        model.addAttribute("currentPage", pageNum);
+        model.addAttribute("totalPages", pageMy.getTotalPages());
+        model.addAttribute("totalItems", pageMy.getTotalElements());
+        model.addAttribute("keyword", keyword);
+
+
         return "listMyArticle";
     }
 
-    @GetMapping("/listMy/{id}")
-    public String changeAvailability(@PathVariable("id") long id, Model model) {
+    @GetMapping("/listAviabiltyMy/{id}")
+    public String changeAvi(@PathVariable("id") long id, Model model) {
         User currUser = userService.loadCurrentUser();
         model.addAttribute("myArticles", currUser.getArticles());
 
@@ -174,6 +177,7 @@ public class ArticleController {
         articleService.updateArticle(article);
         return "redirect:/article/listMy";
     }
+
 
     @GetMapping("/editArticle/{id}")
     public String showEditArticleForm(@PathVariable("id") long id, Model model) {
@@ -200,4 +204,14 @@ public class ArticleController {
         model.addAttribute("myArticles", currUser.getArticles());
         return "listMyArticle";
     }
+
+//    @GetMapping("/deleteArticle/{id}")
+//    public String deleteArt(@PathVariable(name = "id") int id) {
+//        long l = id;
+//        articleService.deleteArticle(l);
+//        return "redirect:/article/listMy";
+//    }
+
+
+
 }
