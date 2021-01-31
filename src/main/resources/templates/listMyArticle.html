@@ -104,36 +104,51 @@
                     <div class="col-md-10">
                         <h2 th:case="null">No articles yet!</h2>
                         <div th:case="*">
-                            <table class="table table-striped table-responsive-md">
-                                <thead>
-                                <tr>
-                                    <th>Zdjęcie</th>
-                                    <th>Nazwa</th>
-                                    <th>Lokalizacja</th>
-<!--                                    <th>Opis</th>-->
-                                    <th>Cena</th>
-                                    <th>Zmień dostępność</th>
-                                    <th>Edytuj</th>
-                                    <th>Usuń</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr th:each="article : ${myArticles}">
-                                    <td>
-                                        <img th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/></a>
-                                    </td>
-                                    <td th:text="${article.name}"></td>
-                                    <td th:text="${article.placeOfTheObject}"></td>
-                                    <td th:text="${article.price}"></td>
-                                    <td><a th:href="@{/article/listAviabiltyMy/{id}(id=${article.articleId})}" class="btn btn-primary"><i
-                                            class="fas fa-user-edit ml-2"></i></a></td>
-                                    <td><a th:href="@{/article/editArticle/{id}(id=${article.articleId})}" class="btn btn-primary"><i
-                                            class="fas fa-user-edit ml-2"></i></a></td>
-                                    <td><a th:href="@{/article/deleteArticle/{id}(id=${article.articleId})}" class="btn btn-primary"><i
-                                            class="fas fa-user-edit ml-2"></i></a></td>
-                                </tr>
-                                </tbody>
-                            </table>
+
+                            <div class="wrapper">
+                                <span th:each="article : ${myArticles}">
+                                    <div class="card" style="width: 200px;">
+                                        <img class="card-img-top" th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}">
+                                        <div class="card-body">
+                                            <h4 class="card-title" th:text="${article.name}"></h4>
+                                            <p class="card-text" th:text="${article.price}"></p>
+                                            <a class="availability" th:unless="${article.available} == true" th:href="@{/article/listAviabiltyMy/{id}(id=${article.articleId})}"><p class="card-text"><i class="fas fa-lock"></i></p></a>
+                                            <a class="availability" th:if="${article.available} == true" th:href="@{/article/listAviabiltyMy/{id}(id=${article.articleId})}"><p class="card-text"><i class="fas fa-unlock-alt"></i></p></a>
+                                        </div>
+                                    </div>
+<!--                                </a>-->
+                                </span>
+                            </div>
+<!--                            <table class="table table-striped table-responsive-md">-->
+<!--                                <thead>-->
+<!--                                <tr>-->
+<!--                                    <th>Zdjęcie</th>-->
+<!--                                    <th>Nazwa</th>-->
+<!--                                    <th>Lokalizacja</th>-->
+<!--&lt;!&ndash;                                    <th>Opis</th>&ndash;&gt;-->
+<!--                                    <th>Cena</th>-->
+<!--                                    <th>Zmień dostępność</th>-->
+<!--                                    <th>Edytuj</th>-->
+<!--                                    <th>Usuń</th>-->
+<!--                                </tr>-->
+<!--                                </thead>-->
+<!--                                <tbody>-->
+<!--                                <tr th:each="article : ${myArticles}">-->
+<!--                                    <td>-->
+<!--                                        <img th:src="@{${'/article-photos/' + article.articleId + '/' + article.photo}}"/></a>-->
+<!--                                    </td>-->
+<!--                                    <td th:text="${article.name}"></td>-->
+<!--                                    <td th:text="${article.placeOfTheObject}"></td>-->
+<!--                                    <td th:text="${article.price}"></td>-->
+<!--                                    <td><a th:href="@{/article/listAviabiltyMy/{id}(id=${article.articleId})}" class="btn btn-primary"><i-->
+<!--                                            class="fas fa-user-edit ml-2"></i></a></td>-->
+<!--                                    <td><a th:href="@{/article/editArticle/{id}(id=${article.articleId})}" class="btn btn-primary"><i-->
+<!--                                            class="fas fa-user-edit ml-2"></i></a></td>-->
+<!--                                    <td><a th:href="@{/article/deleteArticle/{id}(id=${article.articleId})}" class="btn btn-primary"><i-->
+<!--                                            class="fas fa-user-edit ml-2"></i></a></td>-->
+<!--                                </tr>-->
+<!--                                </tbody>-->
+<!--                            </table>-->
 
 
 

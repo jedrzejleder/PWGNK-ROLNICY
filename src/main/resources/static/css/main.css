@@ -647,6 +647,12 @@ td img{
     border-top-right-radius: 5px;
 }
 
+.wrapper .card .availability {
+    color: black;
+    font-size: 20px;
+    /*padding: 10px;*/
+}
+
 /* The switch - the box around the slider */
 .switch {
     position: relative;
