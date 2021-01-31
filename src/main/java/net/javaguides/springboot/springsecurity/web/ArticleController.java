@@ -111,6 +111,9 @@ public class ArticleController {
                                  @Param("keyword") String keyword,
                                  @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
                                  @PathVariable(name = "pageNum") int pageNum) {
+        if(pageNum == 0 )
+            pageNum = 1 ;
+
         Page<Article> page = articleService.listAll(keyword, searchKeyword, pageNum);
         List<Article> listProducts = page.getContent();
 
@@ -151,6 +154,7 @@ public class ArticleController {
                 @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
                 @PathVariable(name = "pageNum") int pageNum) {
 
+        if(pageNum == 0 ) pageNum = 1 ;
         Long MyUserId = userService.loadCurrentUser().getUserId();
         Page<Article> pageMy = articleService.listAllMy(keyword, searchKeyword, pageNum,  MyUserId);
         List<Article> listProducts = pageMy.getContent();
