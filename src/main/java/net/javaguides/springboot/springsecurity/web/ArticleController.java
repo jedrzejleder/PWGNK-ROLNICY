@@ -165,6 +165,20 @@ public class ArticleController {
         return "listMyArticle";
     }
 
+    @GetMapping("/listAviabiltyMy/{id}")
+    public String changeAvi(@PathVariable("id") long id, Model model) {
+        User currUser = userService.loadCurrentUser();
+        model.addAttribute("myArticles", currUser.getArticles());
+
+        Article article = articleRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid article Id:" + id));
+
+        article.setAvailable(!article.getAvailable());
+        articleService.updateArticle(article);
+        return "redirect:/article/listMy";
+    }
+
+
     @GetMapping("/editArticle/{id}")
     public String editArticleGet(@PathVariable("id") long id, Model model) {
         Article article = articleRepository.findById(id)
@@ -186,10 +200,13 @@ public class ArticleController {
         return "redirect:/article/listMy";
     }
 
-    @RequestMapping("/deleteArticle/{id}")
-    public String deleteProduct(@PathVariable(name = "id") int id) {
-        long l = id;
-        articleService.deleteArticle(l);
-        return "redirect:/article/listMy";
-    }
+//    @GetMapping("/deleteArticle/{id}")
+//    public String deleteArt(@PathVariable(name = "id") int id) {
+//        long l = id;
+//        articleService.deleteArticle(l);
+//        return "redirect:/article/listMy";
+//    }
+
+
+
 }

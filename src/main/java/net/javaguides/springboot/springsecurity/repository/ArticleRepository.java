@@ -33,32 +33,28 @@ public interface ArticleRepository extends JpaRepository<Article, Long> {
 
 
 
-    @Query("select a from Article a inner join User u On a.user_owner=u.userId Where a.available = 1"
-            + "AND u.userId=?1 " )
+    @Query("select a from Article a inner join User u On a.user_owner=u.userId Where u.userId=?1")
     public Page<Article> findAllAvailableMy(Long myUserId, Pageable pageable );
 
 
     @Query("select a from Article a inner join User u On a.user_owner=u.userId WHERE a.name LIKE %?1%"
-            + " AND a.available = 1 "
             + " AND u.userId=?2 ")
     public Page<Article> searchNameMy(String keyword,Long myUserId, Pageable pageable);
 
     @Query("select a from Article a inner join User u On a.user_owner=u.userId WHERE a.placeOfTheObject LIKE %?1%"
-            + " AND a.available = 1 "
             + " AND u.userId=?2 ")
     public Page<Article> searchPlaceMy(String keyword,Long myUserId, Pageable pageable);
 
     @Query("select a from Article a inner join User u On a.user_owner=u.userId WHERE CONCAT(a.price, '') LIKE %?1%"
-            + " AND a.available = 1 "
             + " AND u.userId=?2 ")
     public Page<Article> searchPriceMy(String keyword,Long myUserId, Pageable pageable);
 
 
     @Modifying
-    @Query("delete from Article a where a.articleId = ?1")
+    @Query("delete from Article  where articleId = ?1")
     void deleteUsersByFirstName(Long id);
 
-
+    Long deleteArticleByArticleId(Long id);
 
 
 }

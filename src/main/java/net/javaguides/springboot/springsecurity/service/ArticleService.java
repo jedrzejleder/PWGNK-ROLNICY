@@ -99,7 +99,9 @@ public class ArticleService {
 
     @Transactional
     public void deleteArticle(Long id ) {
-        articleRepository.deleteUsersByFirstName(id);
+
+//        articleRepository.deleteUsersByFirstName(id);
+        articleRepository.deleteArticleByArticleId(id);
     }
 
 
