@@ -67,7 +67,7 @@ public class ArticleService {
     }
 
     public Page<Article> listAllMy(String keyword, String searchKeyword, int pageNum, Long myUserId) {
-        int pageSize = 2;
+        int pageSize = 10;
 
         Pageable pageable = PageRequest.of(pageNum - 1, pageSize);
 
