@@ -88,7 +88,6 @@ public class ProfilController {
         //Po to żeby wyświetlało wszystkie pola użytkownika po przejściu do profil/display
         model.addAttribute(displayed);
         //Zmiana poszczególnych pól aktualnie zalogowanego użytkownika
-        displayed.setEmail(user.getEmail());
         displayed.setFirstName(user.getFirstName());
         displayed.setLastName(user.getLastName());
         displayed.setPhone(user.getPhone());
@@ -98,10 +97,6 @@ public class ProfilController {
 
         if (displayed.getLastName().equals("")) {
             result.rejectValue("lastName", null, "Nazwisko nie może być puste.");
-        }
-
-        if (displayed.getEmail().equals("")) {
-            result.rejectValue("email", null, "Email nie może być pusty.");
         }
 
         if (displayed.getPhone().equals("")) {
