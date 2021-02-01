@@ -77,11 +77,11 @@
 
 
 
-        <a class="green-hover" style="color: whitesmoke" th:if="${currentPage > 1}"  th:href="@{'/article/listMy/1'}">First</a>
-        <span th:unless="${currentPage > 1}">First</span>
+        <a class="green-hover" style="color: whitesmoke" th:if="${currentPage > 1}"  th:href="@{'/article/listMy/1'}"><i class="fas fa-fast-backward"></i></a>
+        <span th:unless="${currentPage > 1}"><i class="fas fa-fast-backward"></i></span>
 
-        <a th:if="${currentPage > 1}" th:href="@{'/article/listMy/' + ${currentPage - 1}}">Previous</a>
-        <span th:unless="${currentPage > 1}">Previous</span>
+        <a th:if="${currentPage > 1}" th:href="@{'/article/listMy/' + ${currentPage - 1}}"><i class="fas fa-step-backward"></i></a>
+        <span th:unless="${currentPage > 1}"><i class="fas fa-step-backward"></i></span>
 
         <span th:each="i: ${#numbers.sequence(1, totalPages)}">
             <a th:if="${currentPage != i}" th:href="@{'/article/listMy/' + ${i}}">[[${i}]]</a>
@@ -89,11 +89,11 @@
             &nbsp;
         </span>
 
-        <a th:if="${currentPage < totalPages}" th:href="@{'/article/listMy/' + ${currentPage + 1}}">Next</a>
-        <span th:unless="${currentPage < totalPages}">Next</span>
+        <a th:if="${currentPage < totalPages}" th:href="@{'/article/listMy/' + ${currentPage + 1}}"><i class="fas fa-step-forward"></i></a>
+        <span th:unless="${currentPage < totalPages}"><i class="fas fa-step-forward"></i></span>
 
-        <a class="green-hover" style="color: whitesmoke" th:if="${currentPage < totalPages}" th:href="@{'/article/listMy/' + ${totalPages}}">Last</a>
-        <span th:unless="${currentPage < totalPages}">Last</span>
+        <a class="green-hover" style="color: whitesmoke" th:if="${currentPage < totalPages}" th:href="@{'/article/listMy/' + ${totalPages}}"><i class="fas fa-fast-forward"></i></a>
+        <span th:unless="${currentPage < totalPages}"><i class="fas fa-fast-forward"></i></span>
 
 
 
